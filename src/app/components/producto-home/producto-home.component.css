@@ -1,0 +1,29 @@
+.image-card{
+    height: 250px;
+}
+
+#boton-pedir {
+    width: 100%;
+    align-items: center;
+    background-color: #ED200F;
+    border-color:#ED200F;
+    border-radius: 0%;
+}
+
+#boton-detalle {
+    width: 100%;
+    align-items: center;
+    background-color: #1B7FFC;
+    border-color:#1B7FFC;
+    border-radius: 0%;
+    color: #fff;
+}
+
+/*
+#boton-detalle:hover {
+    background-color: #1B7FFC;
+    color: white;
+}
+*/
+
+/*Faltan estilos del modal*/

@@ -1,0 +1,56 @@
+*{
+    box-sizing: inherit;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#marcas-contenedor {
+    background-color: #F83901;
+    opacity: 0.95;
+}
+
+.logo-std{
+    width: 230px;
+    height: 95px;
+}
+
+.logo-sanfernando{
+    padding-top: 15px;
+}
+
+.logo-gloria{
+    padding-top: 15px;
+}
+
+.logo-clorox{
+    padding-top: 15px;
+}
+
+.logo-colgate{
+    padding-top: 5px;
+}
+
+.img-colgate{
+    height: 115px;
+}
+
+.form-contenedor{
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.formulario-contenedor{
+    background-color: #F1DDC9;
+    /*background-color: #D84727;*/
+}
+
+a.btn-form{
+    color: black; 
+    text-decoration: none;
+}
+
+a.btn-form:hover{
+    color: #F83901; 
+    text-decoration: none;
+}

@@ -1,0 +1,8 @@
+#botones-grupo {
+    color: black;
+    border: 0;
+}
+
+#botones-grupo:hover {
+    background-color: #E5E5E5;
+}

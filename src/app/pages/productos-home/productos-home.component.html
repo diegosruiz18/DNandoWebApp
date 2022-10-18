@@ -1,0 +1,36 @@
+<div class="container pt-5">
+    <div class="row">
+      <div class="col-6 text-left px-0">
+        <h2>Nuestros Productos</h2>
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-producto-home></app-producto-home>
+      </div>
+      <div class="col">
+        <app-producto-home></app-producto-home>
+      </div>
+      <div class="col">
+        <app-producto-home></app-producto-home>
+      </div>
+      <div class="col">
+        <app-producto-home></app-producto-home>
+      </div>
+    </div>
+  </div>
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD:
+    <div class="col" *ngFor="let producto of productos.slice(0, 4)">
+        <app-producto-home
+            [nombreProducto]="producto.payload.doc.data().nombre"
+            [precioFinal]="producto.payload.doc.data().preciofinal"
+            [precioProducto]="producto.payload.doc.data().precio"
+            [descuentoProducto]="producto.payload.doc.data().descuento"
+            [photoURL]="producto.payload.doc.data().photoURL"
+            [idProducto]="producto.payload.doc.id"
+        ></app-producto-home>
+    </div>
+-->

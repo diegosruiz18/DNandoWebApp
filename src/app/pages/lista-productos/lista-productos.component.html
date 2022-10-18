@@ -1,0 +1,73 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h1>Elige tu producto favorito</h1>
+            <br>
+            <h3>¿Qué estás buscando?</h3>
+        </div>
+    </div>
+    <!-- botones -->
+    <div class="row py-5">
+        <div class="col-4 text-end">
+            <!--Implementar funcionalidad del boton-->
+            <button class="btn btn-naranja py-2">Abarrotes</button>
+        </div>
+        <div class="col-4 text-center">
+            <!--Implementar funcionalidad del boton-->
+            <button class="btn btn-azul py-4 px-4">Snacks</button>
+        </div>
+        <div class="col-4 text-start">
+            <!--Implementar funcionalidad del boton-->
+            <button class="btn btn-naranja py-4 px-4">Lácteos y<br> bebidas</button>
+        </div>
+    </div>
+
+    <div class="row py-5">
+        <div class="col-6 text-end"
+        style="padding-right: 65px;">
+            <!--Implementar funcionalidad del boton-->
+            <button class="btn btn-azul py-2">Higiene y<br> limpieza</button>
+        </div>
+        <div class="col-6 text-start"
+        style="padding-left: 65px;">
+            <!--Implementar funcionalidad del boton-->
+            <button class="btn btn-naranja py-4 px-4">Golosinas</button>
+        </div>
+    </div>
+
+    <!--tabla-->
+    <div class="row py-5">
+        <div class="col">
+            <div>
+                <app-tabla-productos></app-tabla-productos>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD DE TABLAS
+    <div class="row py-5">
+        <div class="col">
+            <div *ngIf="productoSeleccionado=='Prendas y accesorios'">
+                <app-tabla-productos 
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Maquillaje'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Perfume'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+        </div>
+    </div>
+-->
+
+<!--Implementar modal-->

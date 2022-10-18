@@ -1,0 +1,43 @@
+.btn-naranja{
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4%;
+    width: 165px;
+    height: 100px;
+}
+
+.btn-naranja:hover{
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+    font-size: 20px;
+    border-radius: 4%;
+    width: 165px;
+    height: 100px;
+}
+
+.btn-azul{
+    background-color: #1B7FFC;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4%;
+    width: 165px;
+    height: 100px;
+}
+
+.btn-azul:hover{
+    background-color: #fff;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #1B7FFC;
+    font-size: 20px;
+    border-radius: 4%;
+    width: 165px;
+    height: 100px;
+}

@@ -1,0 +1,42 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-6 text-left px-0">
+      <h2>Recomendado para ti</h2>
+      <hr />
+    </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col px-0" style="margin-right: 12px;">
+        <app-recomendacion></app-recomendacion>
+      </div>
+      
+      <div class="col px-0" style="margin-left: 12px;">
+        <app-recomendacion></app-recomendacion>
+      </div>
+      
+    </div>
+</div>
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD
+
+    <div class="col px-0" style="margin-right: 12px;" *ngFor="let oferta of ofertas.slice(0,1)">
+        <app-oferta
+        [photoURL]="oferta.payload.doc.data().photoURL"
+        [nombreProducto]="oferta.payload.doc.data().nombreProducto"
+        [descripcion]="oferta.payload.doc.data().descripcion"
+        [idProducto]="oferta.payload.doc.data().producto.id"
+        ></app-oferta>
+    </div>
+      
+    <div class="col px-0" style="margin-left: 12px;" *ngFor="let oferta of ofertas.slice(1)">
+        <app-oferta
+        [photoURL]="oferta.payload.doc.data().photoURL"
+        [nombreProducto]="oferta.payload.doc.data().nombreProducto"
+        [descripcion]="oferta.payload.doc.data().descripcion"
+        [idProducto]="oferta.payload.doc.data().producto.id"
+        ></app-oferta>
+    </div>
+-->

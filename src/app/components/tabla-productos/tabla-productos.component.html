@@ -1,0 +1,48 @@
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Descuento</th>
+            <th scope="col">Precio final</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><img src="../../../assets/pan-molde-bimbo.jpg" alt="" width="150px" height="150px"></th>
+            <td>Pan de molde rebanado</td>
+            <td>Bimbo</td>
+            <td>S/. 14.50</td>
+            <td>10 %</td>
+            <td>S/. 13.05</td>
+            <td scope="col">
+                <!--Implementar funcionalidad del boton-->
+              <button class="btn btn-blanco-naranja mx-2"
+              >Pedir</button>
+              <button class="btn btn-blanco-azul">Detalles</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD DE LA TABLA
+    <tr *ngFor="let producto of productos">
+        <th scope="row"><img src="{{producto.payload.doc.data().photoURL}}" alt="" width="150px" height="150px"></th>
+        <td>{{producto.payload.doc.data().nombre}}</td>
+        <td>{{producto.payload.doc.data().marca}}</td>
+        <td>{{producto.payload.doc.data().precio | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
+        <td>{{producto.payload.doc.data().descuento | percent}}</td>
+        <td>{{producto.payload.doc.data().preciofinal | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
+        <td scope="col">
+            <button class="btn btn-blanco mx-2"
+            (click)="anhadirProcutoCarrito(producto); open(content)">Pedir</button>
+            <button class="btn btn-blanco" (click)="enrutarDetalleProducto(producto.payload.doc.id)">Detalles</button>
+        </td>
+    </tr>
+-->

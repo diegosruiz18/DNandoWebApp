@@ -1,0 +1,37 @@
+<div id="card-item" class="card" (mouseenter)="ShowHideButton()" (mouseleave)="ShowHideButton()">
+    <img src="../../../assets/pan-molde-bimbo.jpg" alt="pan-molde" class="img-fluid image-card" />
+    <div class="card-body">
+        <h5 class="card-title">Pan de molde rebanado Bimbo</h5>
+        <p class="card-text text-muted">10% descuento</p>
+        <p class="card-subtitle text-muted"><del>S/. 14.50</del></p>
+        <h5 class="card-subtitle text py-2">S/. 13.20</h5>
+        <div class="row pt-2" id="grupo-botones" *ngIf="!showMainContent">
+            <div class="col">
+                <!--Implementar funcionalidad del boton-->
+                <div id="boton-detalle" 
+                class="btn btn-outline-primary">Detalles
+                </div>
+            </div>
+            <div class="col">
+                <!--Implementar funcionalidad del boton-->
+                <div id="boton-pedir" class="btn btn-primary" 
+                >Pedir
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Boton detalle
+    <div id="boton-detalle" 
+    (click)='enrutarDetalleProducto()' class="btn btn-outline-primary">Detalles
+    </div>
+-->
+
+<!--Boton pedir
+    <div id="boton-pedir" class="btn btn-primary" 
+    (click)="anhadirProcutoCarrito(); open(content)">Pedir
+    </div>
+-->
+
+<!--Implementar modal-->

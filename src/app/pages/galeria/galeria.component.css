@@ -1,0 +1,36 @@
+#imagen-galeria {
+    border: 0;
+    padding: 0;
+}
+
+.btn-blanco{
+    background-color: #fff;
+    border-color: #D84727;
+    border-radius: 0%;
+    color: #D84727;
+    font-size: 16px;
+}
+
+.btn-blanco:hover{
+    background-color: #D84727;
+    border-color: #D84727;
+    border-radius: 0%;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-naranja{
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn-naranja:hover{
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+    font-size: 18px;
+}

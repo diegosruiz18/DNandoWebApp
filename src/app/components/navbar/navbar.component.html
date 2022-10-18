@@ -1,0 +1,88 @@
+<div class="row-fluid" style="border-bottom: 1px solid rgb(155, 155, 155);">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-0">
+            <div class="col-4">
+                <a id="logoDNando" class="navbar-brand hoverLinks">Minimarket D'Nando</a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end; padding-top: 20px;">
+                    <li class="nav-item mx-4">
+                        <a class="nav-link hoverLinks">Nosotros</a>
+                    </li>
+                    <li class="nav-item mx-4">
+                        <a class="nav-link hoverLinks">Galería</a>
+                    </li>
+                    <li class="nav-item mx-4">
+                        <a class="nav-link hoverLinks">Contacto</a>
+                    </li>
+                    <li class="nav-item mx-0">
+                        <div class="col"> <a class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
+                                <img src="../../../assets/ingresar-icon.png" alt="">
+                                Ingresar
+                                <img src="../../../assets/ingresar-derecha-icon.png" alt="" style="height: 40px; width: 40px;">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--
+    TEMPLATE PARA MENU SIN LOGUEAR
+    <ng-template #logeado>
+        <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400;">
+            <li class="nav-item mx-0">
+                <a class="nav-link hoverLinks">Prendas & accesorios</a>
+            </li>
+            <li class="nav-item mx-0">
+                <a class="nav-link hoverLinks">Maquillaje & cuidado de la piel</a>
+            </li>
+            <li class="nav-item mx-0">
+                <a class="nav-link hoverLinks">Perfumes & fragancias</a>
+            </li>
+            <li class="nav-item mx-0">
+                <div class="col"> <a class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
+                        <img src="../../../assets/ingresar-icon.png" alt="">
+                        Ingresar
+                        <img src="../../../assets/ingresar-derecha-icon.png" alt="" style="height: 40px; width: 40px;">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </ng-template>
+-->
+
+<!--
+    TEMPLATE PARA INICIO DE SESION (USUARIO O ADMIN)
+    <ul *ngIf="auth.user | async as user; else logeado" class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <a class="nav-link hoverLinks" (click)="enrutar('pedidos')">Pedidos</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link hoverLinks">Productos</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link hoverLinks">Clientes</a>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">{{ user.displayName }}</a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li>
+            <a class="dropdown-item" (click)="enrutar('admin')">Administrar</a>
+            </li>
+            <li><a class="dropdown-item">Mi Perfil</a></li>
+            <li><a (click)="logout()" class="dropdown-item">Salir</a></li>
+        </ul>
+        </li>
+    </ul>
+-->

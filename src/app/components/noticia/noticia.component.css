@@ -1,0 +1,41 @@
+.image-noticia-card{
+    height: 500px;
+}
+
+
+#btn-detalles {
+    width: 50%;
+    background-color: #ED200F;
+    margin-top: 30%;
+    border-color: #ED200F;
+    border-radius: 0%;
+}
+
+#img:hover{
+    transform: scale(1.1);
+    transition: .2s;
+        z-index: 1000;
+}
+
+#img{
+    cursor:pointer;
+}
+
+#img:after {
+    content: '\f002';
+     position: relative;
+     color: #ccc;
+     width: 30px;
+     height: 30px;
+     bottom: 59px;
+     left: 458px; 
+     font-family: FontAwesome;
+     font-style: normal;
+     opacity: 0.8;
+     font-size: 18px;
+ }
+
+#card-item{
+    background-color: #F1DDC9;
+    border: 0;
+}
