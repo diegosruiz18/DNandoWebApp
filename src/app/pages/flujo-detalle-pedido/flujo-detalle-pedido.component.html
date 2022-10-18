@@ -1,0 +1,125 @@
+<div class="container px-0">
+    <!--fases del flujo-->
+    <div class="row">
+        <div class="col text-end">
+            <img src="../../../assets/flujo-detallepedido-detalles.png" alt="">
+            <p class="titulo-detalles">1. Detalles</p>
+        </div>
+        <div class="col text-center">
+            <div class="linea"></div>
+        </div>
+        <div class="col">
+            <img src="../../../assets/flujo-detallepedido-confirmacion.png" alt="">
+            <p class="titulo-confirmacion">2. Confirmación</p>
+        </div>
+    </div>
+    <!--cards-->
+    <div class="row py-3 px-0">
+        <!--detalles del precio-->
+        <div class="col">
+            <div id="card-item" class="card">
+                <div class="card-body px-5">
+                    <h2 class="card-title py-2 titulo-card">Detalles de su pedido</h2>
+                    <div class="row py-1">
+                        <div class="col-6">
+                            <p class="card-text texto-card">Subtotal</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text texto-card">S/. 24.50</p>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6">
+                            <p class="card-text texto-card">Costo de envío</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text texto-card">S/. 1.00</p>
+                        </div>
+                    </div>
+                    <div class="linea-card"></div>
+                    <div class="row py-2">
+                        <div class="col-6">
+                            <p class="card-text texto-card" style="font-weight: 600; padding-top: 10px;">Total</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text texto-card" style="font-size: 37px; font-weight: 600;">S/. 26.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--detalles direccion de envio-->
+        <div class="col">
+            <div id="card-item" class="card">
+                <div class="card-body px-4">
+                    <h2 class="card-title py-2 titulo-card">Ingrese sus datos</h2>
+                    <!--formulario-->
+                    <form [formGroup]="formLogin" (submit)="open()" class="pt-0 pb-4" errorTailor>
+                        <!-- ********** Nombre completo ************** -->
+                        <div class="mb-4">
+                            <label for="nombre" class="form-label titulo-label">Nombre completo</label>
+                            <input type="text" id="nombre" class="form-control shadow texto-label" formControlName="nombre">
+                        </div>
+                        <!-- ********** Numero de telefono ************** -->
+                        <div  class="mb-4">
+                            <label for="telefono" class="form-label titulo-label">Número de teléfono</label>
+                            <!--Implementar mensaje de error aqui-->
+                            <input type="text" class="form-control shadow texto-label" id="telefono" formControlName="telefono"
+                            >
+                        </div>
+                        <!-- ********** Correo ************** -->
+                        <div  class="mb-4">
+                          <label for="email" class="form-label titulo-label">Correo</label>
+                          <input type="text" class="form-control shadow texto-label" id="email" formControlName="email">
+                        </div>
+                        <!-- ********** Direccion de envio ************** -->
+                        <div  class="mb-5">
+                            <label for="direccion" class="form-label titulo-label">Dirección de envío</label>
+                            <input type="text" class="form-control shadow texto-label" id="direccion" formControlName="direccion">
+                        </div>
+                        
+                        <!-- ********** Botones ************** -->
+                        <div class="row mt-5 pt-5 text-center">
+                            <div class="col text-center">
+                                <button class="btn btn-confirmar btn-block w-100" 
+                                [disabled]="formLogin.invalid">Confirmar</button>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="w-100 pt-4">
+                          <code class="w-100">
+                              <b>Estado del formulario:</b> {{formLogin.valid | json}}
+                          </code>
+                        </div>
+                        -->
+                    </form>
+                    <div class="row mt-0 text-center">
+                        <div class="col text-center">
+                            <button class="btn btn-regresar w-100" (click)="open()">
+                                Regresar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---- ********************* Templates de error ****************** 
+<ng-template let-error let-text="text" #messagePasswordError>
+    
+    <div *ngIf="error?.minlength">
+        <span>Se esperan al menos {{error?.minlength?.requiredLength}} dígitos, 
+            ud. ha ingresado solo {{error?.minlength?.actualLength}}
+        </span>
+    </div>
+</ng-template>
+    
+<ng-template let-error let-text="text" #mensajeError> {{ error | json }} {{ text }} </ng-template>
+
+--->
+
+<!--
+    IMPLEMENTAR MODALES
+-->

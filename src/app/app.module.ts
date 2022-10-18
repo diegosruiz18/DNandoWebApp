@@ -21,6 +21,15 @@ import { TestimonioComponent } from './components/testimonio/testimonio.componen
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { ListaProductosComponent } from './pages/lista-productos/lista-productos.component';
 import { TablaProductosComponent } from './components/tabla-productos/tabla-productos.component';
+import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { ResumenProductoComponent } from './components/resumen-producto/resumen-producto.component';
+import { InfoProductoComponent } from './components/info-producto/info-producto.component';
+import { FlujoDetallePedidoComponent } from './pages/flujo-detalle-pedido/flujo-detalle-pedido.component';
+
+//Modules
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-confirmacion.component';
+
 
 @NgModule({
   declarations: [
@@ -42,11 +51,18 @@ import { TablaProductosComponent } from './components/tabla-productos/tabla-prod
     TestimonioComponent,
     GaleriaComponent,
     ListaProductosComponent,
-    TablaProductosComponent
+    TablaProductosComponent,
+    DetalleProductoComponent,
+    ResumenProductoComponent,
+    InfoProductoComponent,
+    FlujoDetallePedidoComponent,
+    FlujoConfirmacionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

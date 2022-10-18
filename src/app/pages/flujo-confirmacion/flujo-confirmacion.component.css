@@ -1,0 +1,59 @@
+.linea {
+    border-top: 1px solid black;
+    height: 1px;
+    margin: 0;
+    margin-top: 65px;
+}
+
+.linea-card {
+    border-bottom: 1px solid black;
+    height: 1px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.titulo-confirmacion-naranja{
+    padding-top: 4px;
+    padding-right: 4px;
+    color: #ED200F;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.titulo-detalles-gris{
+    padding-top: 4px;
+    font-size: 20px;
+    color: #696969;
+}
+
+.btn-naranja{
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+    font-size: 21px;
+}
+
+.btn-naranja:hover{
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+    font-size: 21px;
+}
+
+.texto-card{
+    font-size: 28px;
+}
+
+.texto-card-sm{
+    font-size: 20px;
+}
+
+.texto-gris{
+    color: #696969;
+}
+
+.texto-cabecera{
+    font-size: 18px;
+}

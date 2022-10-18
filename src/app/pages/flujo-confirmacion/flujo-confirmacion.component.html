@@ -1,0 +1,140 @@
+<div class="container">
+    <!--fases del flujo-->
+    <div class="row">
+        <div class="col text-end">
+            <img src="../../../assets/flujo-confirmacion-detalles.png" alt="">
+            <p class="titulo-detalles-gris">1. Detalles</p>
+        </div>
+        <div class="col text-center">
+            <div class="linea"></div>
+        </div>
+        <div class="col">
+            <img src="../../../assets/flujo-confirmacion-confirmacion.png" alt="">
+            <p class="titulo-confirmacion-naranja">2. Confirmación</p>
+        </div>
+    </div>
+    <!--cards-->
+    <div class="row py-3">
+        <div class="col">
+            <div id="card-item" class="card border-0">
+                <div class="card-body px-4">
+                    <!--Imagen de presentacion-->
+                    <div class="row py-5 text-center">
+                        <div class="col">
+                            <img src="../../../assets/img-pedido-confirmado2.png" alt="">
+                        </div>
+                    </div>
+                    <!--Titulo de confirmacion-->
+                    <div class="row text-center">
+                        <div class="col">
+                            <h3 class="card-title texto-card" style="font-weight: 600;">Pedido confirmado</h3>
+                        </div>
+                    </div>
+                    <!--Texto de confirmacion-->
+                    <div class="row py-3 text-center">
+                        <div class="col">
+                            <h5 class="card-text" style="font-weight: 400;">Su pedido ha sido confirmado, espere y realice</h5>
+                            <h5 class="card-text" style="font-weight: 400;">el seguimiento a su pedido.</h5>
+                        </div>
+                    </div>
+                    <!--Boton-->
+                    <div class="row py-2">
+                        <div class="col text-center">
+                            <!--Implementar funcionalidad del boton-->
+                            <button class="btn btn-naranja w-50 py-2"
+                            >Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div id="card-item" class="card border-0">
+                <div class="card-body px-5">
+                    <!--Cabecera de la card-->
+                    <div class="row py-5 text-start texto-cabecera">
+                        <h2 class="card-title py-0 titulo-card">Detalles de su pedido</h2>
+                    </div>
+
+                    <!-- Productos -->
+                    <div class="row text-start">
+                        <div class="col">
+                            <p class="card-text texto-card-sm my-0">Pan integral Bimbo</p>
+                            <p class="card-text texto-card-sm texto-gris">1 x S/. 13.32</p>
+                        </div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col">
+                            <p class="card-text texto-card-sm my-0">Pan de hamburguesa Bimbo</p>
+                            <p class="card-text texto-card-sm texto-gris">1 x S/. 10.00</p>
+                        </div>
+                    </div>
+
+                    <!-- Precios -->
+                    <div class="row py-1" style="margin-top: 15px;">
+                        <div class="col-6">
+                            <p class="card-text texto-card">Subtotal</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text texto-card">S/. 23.32</p>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-6">
+                            <p class="card-text texto-card">Costo de envío</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-text texto-card">S/. 1.00</p>
+                        </div>
+                    </div>
+                    <!-- línea de separacion -->
+                    <div class="row text-end">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6">
+                            <div class="linea-card"></div>
+                        </div>
+                    </div>
+                    <!-- total -->
+                    <div class="row py-2">
+                        <div class="col-6">
+                            <p class="card-text texto-card" style="font-weight: 600;">Total</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text texto-card" style="font-size: 40px; font-weight: 600;">S/. 24.32</p>
+                        </div>
+                    </div>
+                    <!-- línea de separacion -->
+                    <div class="row text-end">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6">
+                            <div class="linea-card" style="margin-top: 0px;"></div>
+                        </div>
+                    </div>
+                    <!-- dirección de envío -->
+                    <div class="row py-2" style="margin-bottom: 19px;">
+                        <div class="col-6">
+                            <p class="card-text texto-card-sm">Dirección de envío</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="card-text texto-card-sm texto-gris">Av. Jose Correa 154</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD
+
+    <div class="row text-start" *ngFor="let producto of productosCarrito">
+        <div class="col">
+            <p class="card-text texto-card-sm my-0">{{producto.nombre}}</p>
+            <p class="card-text texto-card-sm texto-gris">{{producto.cantidad}} x {{(producto.cantidad*producto.preciofinal) | currency:'PLUMA':'S/. ':'1.2-2'}}</p>
+        </div>
+    </div>
+-->

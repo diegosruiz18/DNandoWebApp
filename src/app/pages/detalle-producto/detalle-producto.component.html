@@ -1,0 +1,77 @@
+<app-resumen-producto></app-resumen-producto>
+<div class="container pt-5 px-0">
+  <div class="row">
+    <div class="col-2 titulo titulo-detalles">
+        <!--Implementar funcionalidad-->
+      <button class="btn señalar">Ver detalles</button>
+    </div>
+    <div class="col-3 titulo titulo-prod-similares">
+      <button class="btn señalar">Productos similares</button>
+    </div>
+    <div class="col-12 py-0">
+      <hr />
+    </div>
+  </div>
+</div>
+<app-info-producto></app-info-producto>
+<div class="container pt-5 px-0">
+    <div class="row pb-4">
+        <div class="col">
+            <h4 style="font-weight: 600;">Califica este producto</h4>
+            <p class="texto">En una escala del 1 al 5, donde 1 es muy malo y 5 es excelente<br>
+                califique su experiencia con este producto</p>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle btn-select" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seleccione aquí
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">1: muy malo</a></li>
+                    <li><a class="dropdown-item" href="#">2: malo</a></li>
+                    <li><a class="dropdown-item" href="#">3: regular</a></li>
+                    <li><a class="dropdown-item" href="#">4: bueno</a></li>
+                    <li><a class="dropdown-item" href="#">5: excelente</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+    PARA IMPLEMENTAR FUNCIONALIDAD
+
+    <app-resumen-producto
+    *ngIf="infoProducto != ''"
+    [idProducto]="idDocumento"
+    [nombreProducto]="infoProducto.nombre"
+    [precio]="infoProducto.precio"
+    [preciofinal]="infoProducto.preciofinal"
+    [photoURL]="infoProducto.photoURL"
+    [descuento]="infoProducto.descuento"
+    ></app-resumen-producto>
+
+    <app-info-producto *ngIf="infoProducto != '' && opcion=='detalles'"
+    [acercaDe]="infoProducto.acercaDe"
+    [marca]="infoProducto.marca"
+    [instrucciones]="infoProducto.instrucciones"
+    [publicoObjetivo]="infoProducto.dirigido"
+    [contenido]="infoProducto.contenido"
+    [categoria]="infoProducto.categoria"
+    ></app-info-producto>
+
+    <div class="container pt-5" *ngIf="infoProducto != '' && opcion=='productosSimilares'">
+        <div class="row">
+            <div class="col" *ngFor="let producto of productos.slice(0, 4)">
+            <app-producto-home
+                [nombreProducto]="producto.payload.doc.data().nombre"
+                [precioFinal]="producto.payload.doc.data().preciofinal"
+                [precioProducto]="producto.payload.doc.data().precio"
+                [descuentoProducto]="producto.payload.doc.data().descuento"
+                [photoURL]="producto.payload.doc.data().photoURL"
+                [idProducto]="producto.payload.doc.id"
+            ></app-producto-home>
+            </div>
+        </div>
+    </div>
+-->
