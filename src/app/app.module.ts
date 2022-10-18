@@ -29,6 +29,7 @@ import { FlujoDetallePedidoComponent } from './pages/flujo-detalle-pedido/flujo-
 //Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-confirmacion.component';
+import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-con
     ResumenProductoComponent,
     InfoProductoComponent,
     FlujoDetallePedidoComponent,
-    FlujoConfirmacionComponent
+    FlujoConfirmacionComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,
