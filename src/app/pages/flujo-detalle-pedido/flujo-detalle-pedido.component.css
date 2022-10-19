@@ -111,19 +111,19 @@ input.ng-valid {
     font-size: 16px;
 }
 
-.btn-naranja-claro{
-    background-color: #ED200F;
-    border-color: #ED200F;
+.btn-azul{
+    background-color: #1B7FFC;
+    border-color: #1B7FFC;
     border-radius: 0%;
     color: #fff;
     font-size: 16px;
 }
 
-.btn-naranja-claro:hover{
+.btn-azul:hover{
     background-color: #fff;
-    border-color: #ED200F;
+    border-color: #1B7FFC;
     border-radius: 0%;
-    color: #ED200F;
+    color: #1B7FFC;
     font-size: 16px;
 }
 

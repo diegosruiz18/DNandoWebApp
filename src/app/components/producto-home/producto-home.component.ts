@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 //para el modal
 import {
@@ -28,6 +29,7 @@ export class ProductoHomeComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     config: NgbModalConfig,
+    private router: Router,
   ) { 
     config.size = 'xl';
     config.scrollable = true;
@@ -45,6 +47,11 @@ export class ProductoHomeComponent implements OnInit {
 
   ngOnInit(): void {
     //Implementar funcionalidad para modal
+  }
+
+  enrutarDetalleProducto(){
+    //Implementar ruta hacia detalle de producto -> producto:id
+    this.router.navigate(['detalle'])
   }
 
   //para el modal
@@ -73,7 +80,7 @@ export class ProductoHomeComponent implements OnInit {
 
   cerrar(): void {
     this.modalService.dismissAll();
-    //this.router.navigate(['flujo-detalles']);
+    this.router.navigate(['flujo-detalles']);
   }
 
   operacionUnidadProductoCarrito() {
@@ -83,7 +90,7 @@ export class ProductoHomeComponent implements OnInit {
 
   seguirComprando():void{
     this.modalService.dismissAll();
-    //this.router.navigate(['productos']);
+    this.router.navigate(['productos']);
   }
 
 }

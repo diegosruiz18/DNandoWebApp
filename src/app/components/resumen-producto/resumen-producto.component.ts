@@ -7,6 +7,9 @@ import {
   NgbModalConfig,
 } from '@ng-bootstrap/ng-bootstrap';
 
+//para cambiar de pagina
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-resumen-producto',
   templateUrl: './resumen-producto.component.html',
@@ -26,6 +29,7 @@ export class ResumenProductoComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     config: NgbModalConfig,
+    private router: Router,
   ) { 
     config.size = 'xl';
     config.scrollable = true;
@@ -66,7 +70,7 @@ export class ResumenProductoComponent implements OnInit {
 
   cerrar(): void {
     this.modalService.dismissAll();
-    //this.router.navigate(['flujo-detalles']);
+    this.router.navigate(['flujo-detalles']);
   }
 
   operacionUnidadProductoCarrito() {
@@ -76,7 +80,7 @@ export class ResumenProductoComponent implements OnInit {
 
   seguirComprando():void{
     this.modalService.dismissAll();
-    //this.router.navigate(['productos']);
+    this.router.navigate(['productos']);
   }
 
 }

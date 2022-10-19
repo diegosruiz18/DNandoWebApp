@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-0">
             <div class="col-4">
-                <a id="logoDNando" class="navbar-brand hoverLinks">Minimarket D'Nando</a>
+                <a (click)="enrutar('home')" id="logoDNando" class="navbar-brand hoverLinks">Minimarket D'Nando</a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -14,10 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end; padding-top: 20px;">
                     <li class="nav-item mx-4">
-                        <a class="nav-link hoverLinks">Nosotros</a>
+                        <a (click)="enrutar('nosotros')" class="nav-link hoverLinks">Nosotros</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link hoverLinks">Galería</a>
+                        <a (click)="enrutar('productos')" class="nav-link hoverLinks">Galería</a>
                     </li>
                     <li class="nav-item mx-4">
                         <a class="nav-link hoverLinks">Contacto</a>
