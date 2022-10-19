@@ -30,6 +30,8 @@ import { FlujoDetallePedidoComponent } from './pages/flujo-detalle-pedido/flujo-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-confirmacion.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
+import { ErrorTailorModule } from '@ngneat/error-tailor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -64,7 +66,18 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ErrorTailorModule.forRoot({
+      errors: {
+        useValue: {
+          required: 'Este campo es requerido',
+          minlength: ({ requiredLength, actualLength }) => 
+                      `Expect ${requiredLength} but got ${actualLength}`,
+          invalidAddress: error => `Address isn't valid`
+        }
+      }
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

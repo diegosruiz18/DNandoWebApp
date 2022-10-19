@@ -11,6 +11,15 @@
     border-radius: 0%;
 }
 
+#btn-detalles:hover {
+    width: 50%;
+    background-color: #fff;
+    margin-top: 30%;
+    border-color: #ED200F;
+    color: #ED200F;
+    border-radius: 0%;
+}
+
 #img:hover{
     transform: scale(1.1);
     transition: .2s;

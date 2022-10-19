@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FlujoDetallePedidoComponent implements OnInit {
 
-  //FALTA IMPLEMENTAR TEMPLATE DE ERROR, MODIFICAR app.module.ts
 
   //para modales
   modalsNumber:number = 0;
@@ -55,22 +54,6 @@ export class FlujoDetallePedidoComponent implements OnInit {
         ]
       ],
       direccion: ['', [
-          Validators.required
-        ]
-      ],
-      pais: ['', [
-          Validators.required
-        ]
-      ],
-      provincia: ['', [
-          Validators.required
-        ]
-      ],
-      ciudad: ['', [
-          Validators.required
-        ]
-      ],
-      codigopostal: ['', [
           Validators.required
         ]
       ]

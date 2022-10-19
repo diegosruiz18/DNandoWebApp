@@ -63,9 +63,8 @@
                         <!-- ********** Numero de telefono ************** -->
                         <div  class="mb-4">
                             <label for="telefono" class="form-label titulo-label">Número de teléfono</label>
-                            <!--Implementar mensaje de error aqui-->
                             <input type="text" class="form-control shadow texto-label" id="telefono" formControlName="telefono"
-                            >
+                            [controlErrorsTpl]="messagePasswordError">
                         </div>
                         <!-- ********** Correo ************** -->
                         <div  class="mb-4">
@@ -106,7 +105,7 @@
     </div>
 </div>
 
-<!---- ********************* Templates de error ****************** 
+<!---- ********************* Templates de error ****************** --->
 <ng-template let-error let-text="text" #messagePasswordError>
     
     <div *ngIf="error?.minlength">
@@ -118,8 +117,8 @@
     
 <ng-template let-error let-text="text" #mensajeError> {{ error | json }} {{ text }} </ng-template>
 
---->
+
 
 <!--
-    IMPLEMENTAR MODALES
+    IMPLEMENTAR MODALES DE CONFIRMACION Y RETORNO
 -->

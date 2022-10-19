@@ -13,9 +13,9 @@
                 </div>
             </div>
             <div class="col">
-                <!--Implementar funcionalidad del boton-->
+                <!--Implementar funcionalidad del boton, agregar producto a carrito-->
                 <div id="boton-pedir" class="btn btn-primary" 
-                >Pedir
+                (click)="open(content)">Pedir
                 </div>
             </div>
         </div>
@@ -34,4 +34,136 @@
     </div>
 -->
 
-<!--Implementar modal-->
+
+<!--Modal para el carrito de pedido-->
+<ng-template #content let-modal>
+    <div class="modal-header ventana-modal">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h4 class="modal-title" id="modal-basic-title">Carrito de pedido</h4>
+          </div>
+          <div class="col-6 text-end">
+            <button type="button" class="close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body ventana-modal">
+      <div class="container">
+        <!--primer producto-->
+        <!-- Implementar funcionalidad para obtener productos, copiar y pegar en linea 61: 
+            <div class="row" *ngFor="let producto of productosModal"> 
+        -->
+        <div class="row">
+          <div class="col-3 text-center">
+            <img src="../../../assets/pan-integral-bimbo.jpg" alt="reloj" class="img-fluid">
+          </div>
+          <div class="col-3">
+            <h5 class="">Pan integral Bimbo</h5>
+            <p class="text-muted">10% descuento</p>
+            <p class="text-muted"><del>S/. 14.80</del></p>
+            <h5 class="text">S/. 13.32</h5>
+          </div>
+          <div class="col-3 text-center">
+            <h5 class="">Cantidad</h5>
+            <h5 class="text">
+                <!-- Implementar funcionalidad
+                    <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
+                -->
+              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">-</button> 
+              1
+              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">+</button>
+            </h5>
+          </div>
+          <div class="col-3 text-center">
+            <div class="row">
+              <div class="col">
+              <h5 class="">Precio</h5>
+              <h5 class="text">S/. 13.32</h5>
+              </div>
+              <div class="col">
+                <!--Implementar funcionalidad del boton-->
+                <!-- <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn"> -->
+                <button class="btn">
+                  <img src="../../../assets/trash-2-32.png" alt="">
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <!--segundo producto-->
+        <div class="row">
+            <div class="col-3 text-center">
+              <img src="../../../assets/pan-hamburguesa-bimbo.jpg" alt="reloj" class="img-fluid">
+            </div>
+            <div class="col-3">
+              <h5 class="">Pan de hamburguesa Bimbo</h5>
+              <p class="text-muted">10% descuento</p>
+              <p class="text-muted"><del>S/. 11.00</del></p>
+              <h5 class="text">S/. 10.00</h5>
+            </div>
+            <div class="col-3 text-center">
+              <h5 class="">Cantidad</h5>
+              <h5 class="text">
+                  <!-- Implementar funcionalidad
+                      <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
+                  -->
+                <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">-</button> 
+                1
+                <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">+</button>
+              </h5>
+            </div>
+            <div class="col-3 text-center">
+              <div class="row">
+                <div class="col">
+                <h5 class="">Precio</h5>
+                <h5 class="text">S/. 10.00</h5>
+                </div>
+                <div class="col">
+                  <!--Implementar funcionalidad del boton-->
+                  <!-- <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn"> -->
+                  <button class="btn">
+                    <img src="../../../assets/trash-2-32.png" alt="">
+                  </button>
+                </div>
+              </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- subtotal y agregar pedido -->
+        <div class="row text-end">
+          <div class="col-3 text-center">
+            <button class="btn btn-agregar-prod-modal" (click)="seguirComprando()">Seguir Comprando</button>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2 text-end">
+            <p style="font-size: 22px;">Subtotal</p>
+          </div>
+          <div class="col-2 text-end">
+            <h3>S/. 23.32</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--footer del modal: boton para realizar pedido-->
+    <div class="modal-footer ventana-modal">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark btn-lg py-2 btn-modal" 
+            (click)="cerrar()">Realizar pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</ng-template>

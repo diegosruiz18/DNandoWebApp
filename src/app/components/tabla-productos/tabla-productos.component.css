@@ -81,18 +81,18 @@
 
 .btn-agregar-prod-modal{
     width: 170px;
-    background-color: #fff;
-    border-color: #ED200F;
+    background-color: #1B7FFC;
+    border-color: #1B7FFC;
     border-radius: 0%;
-    color: #ED200F;
+    color: #fff;
 }
 
 .btn-agregar-prod-modal:hover{
     width: 170px;
-    background-color: #ED200F;
-    border-color: #ED200F;
+    background-color: #fff;
+    border-color: #1B7FFC;
     border-radius: 0%;
-    color: #fff;
+    color: #1B7FFC;
 }
 
 .btn-cantidad{

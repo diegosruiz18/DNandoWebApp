@@ -78,11 +78,11 @@
 
 /*para el formulario reactivo*/
 input.ng-invalid.ng-touched {
-    border: solid 1px rgb(170, 37, 13) !important;
+    border: solid 1px #ED200F !important;
 }
 
 input.ng-valid {
-    border: solid 1px #e99c55 !important;
+    border: solid 1px #1B7FFC !important;
 }
 
 /* para los labels del formulario*/

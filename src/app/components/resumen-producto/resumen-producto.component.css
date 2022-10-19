@@ -15,60 +15,6 @@
     color: #ED200F;
 }
 
-.btn-modal{
-    width: 50%;
-    background-color: #ED200F;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #fff;
-}
-
-.btn-modal:hover{
-    width: 50%;
-    background-color: #fff;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #ED200F;
-}
-
-.btn-agregar-prod-modal{
-    width: 170px;
-    background-color: #fff;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #ED200F;
-}
-
-.btn-agregar-prod-modal:hover{
-    width: 170px;
-    background-color: #ED200F;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #fff;
-}
-
-.btn-cantidad{
-    width: 22px;
-    height: 22px;
-    padding: 0px;
-    margin: 0%;
-    background-color: #ED200F;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #fff;
-}
-
-.btn-cantidad:hover{
-    width: 22px;
-    height: 22px;
-    padding: 0px;
-    margin: 0%;
-    background-color: #fff;
-    border-color: #ED200F;
-    border-radius: 0%;
-    color: #ED200F;
-}
-
 #img:hover{
     transform: scale(1.1);
     transition: .2s;
@@ -105,6 +51,61 @@
 .fondo-card{
     background: #F7F6F4;
     padding-left: 50px;
+}
+
+/*para el modal*/
+.btn-modal{
+    width: 50%;
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-modal:hover{
+    width: 50%;
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+}
+
+.btn-agregar-prod-modal{
+    width: 170px;
+    background-color: #1B7FFC;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-agregar-prod-modal:hover{
+    width: 170px;
+    background-color: #fff;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #1B7FFC;
+}
+
+.btn-cantidad{
+    width: 22px;
+    height: 22px;
+    padding: 0px;
+    margin: 0%;
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-cantidad:hover{
+    width: 22px;
+    height: 22px;
+    padding: 0px;
+    margin: 0%;
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
 }
 
 .ventana-modal{

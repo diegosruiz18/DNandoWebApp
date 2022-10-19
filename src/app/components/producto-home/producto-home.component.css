@@ -10,6 +10,15 @@
     border-radius: 0%;
 }
 
+#boton-pedir:hover {
+    width: 100%;
+    align-items: center;
+    background-color: #fff;
+    border-color:#ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+}
+
 #boton-detalle {
     width: 100%;
     align-items: center;
@@ -19,11 +28,72 @@
     color: #fff;
 }
 
-/*
-#boton-detalle:hover {
-    background-color: #1B7FFC;
-    color: white;
-}
-*/
 
-/*Faltan estilos del modal*/
+#boton-detalle:hover {
+    width: 100%;
+    align-items: center;
+    background-color: #fff;
+    border-color:#1B7FFC;
+    border-radius: 0%;
+    color: #1B7FFC;
+}
+
+
+/*para el modal*/
+.btn-modal{
+    width: 50%;
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-modal:hover{
+    width: 50%;
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+}
+
+.btn-agregar-prod-modal{
+    width: 170px;
+    background-color: #1B7FFC;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-agregar-prod-modal:hover{
+    width: 170px;
+    background-color: #fff;
+    border-color: #1B7FFC;
+    border-radius: 0%;
+    color: #1B7FFC;
+}
+
+.btn-cantidad{
+    width: 22px;
+    height: 22px;
+    padding: 0px;
+    margin: 0%;
+    background-color: #ED200F;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #fff;
+}
+
+.btn-cantidad:hover{
+    width: 22px;
+    height: 22px;
+    padding: 0px;
+    margin: 0%;
+    background-color: #fff;
+    border-color: #ED200F;
+    border-radius: 0%;
+    color: #ED200F;
+}
+
+.ventana-modal{
+    font-family: 'Taviraj', sans-serif;
+}
