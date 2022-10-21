@@ -12,23 +12,28 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end; padding-top: 20px;">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end;">
                     <li class="nav-item mx-4">
-                        <a (click)="enrutar('nosotros')" class="nav-link hoverLinks">Nosotros</a>
+                    <!--Implementar funcionalidad del boton (click)="enrutar('pedidos')"-->
+                    <a class="nav-link hoverLinks" (click)="enrutar('pedidos')">Pedidos</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a (click)="enrutar('productos')" class="nav-link hoverLinks">Galería</a>
+                    <a class="nav-link hoverLinks">Productos</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link hoverLinks">Contacto</a>
+                    <a class="nav-link hoverLinks">Clientes</a>
                     </li>
-                    <li class="nav-item mx-0">
-                        <div class="col"> <a class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
-                                <img src="../../../assets/ingresar-icon.png" alt="">
-                                Ingresar
-                                <img src="../../../assets/ingresar-derecha-icon.png" alt="" style="height: 40px; width: 40px;">
-                            </a>
-                        </div>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Nombre usuario</a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li>
+                        <a class="dropdown-item" (click)="enrutar('admin')">Administrar</a>
+                        </li>
+                        <li><a class="dropdown-item">Mi Perfil</a></li>
+                        <!--Implementar funcionalidad del boton (click)="logout()"-->
+                        <li><a class="dropdown-item">Salir</a></li>
+                    </ul>
                     </li>
                 </ul>
             </div>
@@ -37,20 +42,20 @@
 </div>
 
 <!--
-    TEMPLATE PARA MENU SIN LOGUEAR
+    TEMPLATE PARA MENU SIN LOGUEAR, descomentar luego
     <ng-template #logeado>
-        <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400;">
-            <li class="nav-item mx-0">
-                <a class="nav-link hoverLinks">Prendas & accesorios</a>
+        <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end; padding-top: 20px;">
+            <li class="nav-item mx-4">
+                <a (click)="enrutar('nosotros')" class="nav-link hoverLinks">Nosotros</a>
+            </li>
+            <li class="nav-item mx-4">
+                <a (click)="enrutar('productos')" class="nav-link hoverLinks">Galería</a>
+            </li>
+            <li class="nav-item mx-4">
+                <a class="nav-link hoverLinks">Contacto</a>
             </li>
             <li class="nav-item mx-0">
-                <a class="nav-link hoverLinks">Maquillaje & cuidado de la piel</a>
-            </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link hoverLinks">Perfumes & fragancias</a>
-            </li>
-            <li class="nav-item mx-0">
-                <div class="col"> <a class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
+                <div class="col"> <a (click)="clickIngresar()" class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
                         <img src="../../../assets/ingresar-icon.png" alt="">
                         Ingresar
                         <img src="../../../assets/ingresar-derecha-icon.png" alt="" style="height: 40px; width: 40px;">
@@ -62,7 +67,12 @@
 -->
 
 <!--
-    TEMPLATE PARA INICIO DE SESION (USUARIO O ADMIN)
+    TEMPLATE PARA INICIO DE SESION (USUARIO O ADMIN), pegar este en el codigo principal
+    Cabecera original (pegar luego):
+
+    <ul *ngIf="auth.user | async as user; else logeado" class="navbar-nav ms-auto mb-2 mb-lg-0">
+    
+    Código:
     <ul *ngIf="auth.user | async as user; else logeado" class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
         <a class="nav-link hoverLinks" (click)="enrutar('pedidos')">Pedidos</a>
@@ -83,6 +93,30 @@
             <li><a class="dropdown-item">Mi Perfil</a></li>
             <li><a (click)="logout()" class="dropdown-item">Salir</a></li>
         </ul>
+        </li>
+    </ul>
+-->
+
+<!--
+    PEGAR LUEGO EN codigo principal
+
+    <ul class="navbar-nav mb-2 mb-lg-0" style="font-weight: 400; width: 100%; justify-content: flex-end; padding-top: 20px;">
+        <li class="nav-item mx-4">
+            <a (click)="enrutar('nosotros')" class="nav-link hoverLinks">Nosotros</a>
+        </li>
+        <li class="nav-item mx-4">
+            <a (click)="enrutar('productos')" class="nav-link hoverLinks">Galería</a>
+        </li>
+        <li class="nav-item mx-4">
+            <a class="nav-link hoverLinks">Contacto</a>
+        </li>
+        <li class="nav-item mx-0">
+            <div class="col"> <a class="nav-link hoverLinks" style="height: 60px; padding-top: 0px;">
+                    <img src="../../../assets/ingresar-icon.png" alt="">
+                    Ingresar
+                    <img src="../../../assets/ingresar-derecha-icon.png" alt="" style="height: 40px; width: 40px;">
+                </a>
+            </div>
         </li>
     </ul>
 -->

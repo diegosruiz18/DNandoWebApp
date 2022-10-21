@@ -1,0 +1,39 @@
+b:hover{
+    cursor: pointer;
+}
+
+b{
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    background-color: #ED200F;
+    border: 1px solid #ED200F;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #ED200F;
+    border: 1px solid #ED200F;
+}
+
+.btn-google{
+    width: 100%;
+    background-color: #1B7FFC;
+    border: 1px solid #1B7FFC;
+}
+
+.btn-google:hover{
+    background-color: #fff;
+    color: #1B7FFC;
+    border: 1px solid #1B7FFC;
+}
+
+#btnSalir {
+    width: auto;
+}
+
+#error {
+    color:red;
+}

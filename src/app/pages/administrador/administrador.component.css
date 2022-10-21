@@ -1,0 +1,32 @@
+#barraLateral {
+    background-color: #D84727;
+}
+
+.row{
+    --bs-gutter-x:0;
+}
+
+button{
+    padding-left: 20%;
+    border: #D84727;
+    color: black;
+    background-color: #F7F6F4;
+    height: 90px;
+    text-align: start;
+    
+}
+
+button:hover{
+    color: #D84727;
+    background-color: #F7F6F4;
+}
+
+button:active{
+    background-color: #F7F6F4;
+    color: #D84727;
+}
+
+button:focus{
+    background-color: #F7F6F4;
+    color: #D84727;
+}

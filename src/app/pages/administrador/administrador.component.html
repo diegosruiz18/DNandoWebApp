@@ -1,0 +1,57 @@
+<div>
+    <div class="row">
+      <div class="col-2">
+        <div class="row-fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupported"
+                aria-controls="navbarSupported"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupported">
+                <div class="col">
+                  <div class="row">
+                    <button (click)="cambiarOpcionModulo('pedidos')">Pedidos</button>
+                  </div>
+                  <div class="row">
+                    <button (click)="cambiarOpcionModulo('productos')">Productos</button>
+                  </div>
+                  <div class="row">
+                    <button>Clientes</button>
+                  </div>
+                  <div class="row">
+                    <button>Categorías</button>
+                  </div>
+                  <div class="row">
+                    <button>Proveedores</button>
+                  </div>
+                  <div class="row">
+                    <button>Configuración</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="col-10">
+        <app-pedidos *ngIf="opcion=='pedidos'"></app-pedidos>
+        <app-productos-admin *ngIf="opcion=='productos'"></app-productos-admin>
+      </div>
+    </div>
+</div>
+  
+<ng-template #logeado>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <a class="nav-link hoverLinks">Ingresar</a>
+        </li>
+    </ul>
+</ng-template>

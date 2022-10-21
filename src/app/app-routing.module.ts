@@ -6,6 +6,10 @@ import { FlujoDetallePedidoComponent } from './pages/flujo-detalle-pedido/flujo-
 import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-confirmacion.component';
 import { ListaProductosComponent } from './pages/lista-productos/lista-productos.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { AdministradorComponent } from './pages/administrador/administrador.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 const routes: Routes = [
   {
@@ -47,6 +51,22 @@ const routes: Routes = [
   {
     path: 'nosotros',
     component: NosotrosComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegistroComponent,
+  },
+  {
+    path: 'admin',
+    component: AdministradorComponent,
+  },
+  {
+    path: 'pedidos',
+    component: PedidosComponent,
   }
 ];
 

@@ -32,6 +32,13 @@ import { FlujoConfirmacionComponent } from './pages/flujo-confirmacion/flujo-con
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './pages/login/login.component';
+import { FormLoginComponent } from './components/form-login/form-login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { AdministradorComponent } from './pages/administrador/administrador.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ProductosAdminComponent } from './pages/productos-admin/productos-admin.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -60,7 +67,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InfoProductoComponent,
     FlujoDetallePedidoComponent,
     FlujoConfirmacionComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    LoginComponent,
+    FormLoginComponent,
+    RegistroComponent,
+    AdministradorComponent,
+    PedidosComponent,
+    ProductosAdminComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

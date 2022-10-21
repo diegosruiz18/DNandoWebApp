@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FootercontrollerService } from 'src/app/services/footercontroller.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public FooteControlador: FootercontrollerService) { }
 
-  //implementar un posible controlador para ocultar o mostrar el footer
+  flag: boolean = this.FooteControlador.controller;
 
   ngOnInit(): void {
   }
