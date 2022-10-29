@@ -21,8 +21,7 @@ export class RecomendacionComponent implements OnInit {
   }
 
   onClick(){
-    //implementar navegacion a detalle de producto -> producto:id
-    this.router.navigate(['detalle']);
+    this.router.navigate(['producto',this.idProducto]);
   }
 
 }

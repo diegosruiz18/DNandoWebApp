@@ -21,11 +21,21 @@
         ></button>
       </div>
       <div class="carousel-inner" style="height: 560px;">
-        <div class="carousel-item active">
-          <app-noticia></app-noticia>
+        <div class="carousel-item active" *ngFor="let noticia of noticias.slice(0,1)">
+          <app-noticia
+            [photoURL]="noticia.payload.doc.data().photoURL"
+            [nombreProducto]="noticia.payload.doc.data().nombreProducto"
+            [descripcion]="noticia.payload.doc.data().descripcion"
+            [idProducto]="noticia.payload.doc.data().producto.id"
+          ></app-noticia>
         </div>
-        <div class="carousel-item">
-          <app-noticia></app-noticia>
+        <div class="carousel-item" *ngFor="let noticia of noticias.slice(1)">
+          <app-noticia
+            [photoURL]="noticia.payload.doc.data().photoURL"
+            [nombreProducto]="noticia.payload.doc.data().nombreProducto"
+            [descripcion]="noticia.payload.doc.data().descripcion"
+            [idProducto]="noticia.payload.doc.data().producto.id"
+          ></app-noticia>
         </div>
       </div>
       <button
@@ -48,23 +58,3 @@
       </button>
     </div>
 </div>
-
-<!--
-    PARA DAR FUNCIONALIDAD:
-    <div class="carousel-item active" *ngFor="let noticia of noticias.slice(0,1)">
-        <app-noticia
-        [photoURL]="noticia.payload.doc.data().photoURL"
-        [nombreProducto]="noticia.payload.doc.data().nombreProducto"
-        [descripcion]="noticia.payload.doc.data().descripcion"
-        [idProducto]="noticia.payload.doc.data().producto.id"
-        ></app-noticia>
-    </div>
-    <div class="carousel-item" *ngFor="let noticia of noticias.slice(1)">
-        <app-noticia
-        [photoURL]="noticia.payload.doc.data().photoURL"
-        [nombreProducto]="noticia.payload.doc.data().nombreProducto"
-        [descripcion]="noticia.payload.doc.data().descripcion"
-        [idProducto]="noticia.payload.doc.data().producto.id"
-        ></app-noticia>
-    </div>
--->

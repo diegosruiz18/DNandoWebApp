@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NoticiasService } from 'src/app/services/noticias.service';
 
 @Component({
   selector: 'app-noticia',
@@ -18,11 +19,12 @@ export class NoticiaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
   onClick(){
-    //implementar navegacion a detalle de producto -> producto:id
-    this.router.navigate(['detalle']);
+    console.log("id: "+this.idProducto);
+    this.router.navigate(['producto',this.idProducto]);
   }
 
 }

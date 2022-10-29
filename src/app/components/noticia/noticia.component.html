@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-6 text-center">
       <img
-        src="../../../assets/pan-molde-bimbo.jpg"
+        src="{{photoURL}}"
         alt="Pan-de-molde"
         class="img-fluid image-noticia-card"
         id="img"
@@ -10,12 +10,11 @@
     <div class="col-6">
       <div id="card-item" class="card">
         <div class="card-body">
-          <h1 class="card-title">Pan de molde rebanado Bimbo</h1>
+          <h1 class="card-title">{{nombreProducto}}</h1>
           <hr>
           <p class="card-text">
-            Descripción del producto.
+            {{descripcion}}
           </p>
-          <!--Implementar funcionalidad del boton-->
           <div id="btn-detalles" class="btn btn-primary btn-lg col-12" (click)="onClick()">Ver Detalles</div>
       </div>
     </div>
