@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CarritoService } from 'src/app/services/carrito.service';
+import { PedidoTemporalService } from 'src/app/services/pedido-temporal.service';
 
 @Component({
   selector: 'app-flujo-confirmacion',
@@ -15,20 +17,22 @@ export class FlujoConfirmacionComponent implements OnInit {
   total:number=0;
   direccion:string="";
 
-  constructor(
-    private router:Router,
-  ) { }
+  constructor(private router:Router,
+              private pedidoTemporal: PedidoTemporalService,
+              private carritoTemporal: CarritoService) { }
 
   ngOnInit(): void {
-    //Implementar funcionalidad para obtener datos del pedidoTemporal
+    this.productosCarrito=this.pedidoTemporal.getProductosCarrito();
+    this.subtotal=this.pedidoTemporal.getSubtotal();
+    this.costoEnvio=this.pedidoTemporal.getCostoEnvio();
+    this.total=this.pedidoTemporal.getTotal();
+    this.direccion=this.pedidoTemporal.getDireccion();
   }
 
   aceptar(): void{
-    //Implementar funcionalidad
     //limpiando carrito y pedido temporal para ingresar nuevos
-    //this.pedidoTemporal.limpiar();
-    //this.carritoTemporal.limpiar();
-
+    this.pedidoTemporal.limpiar();
+    this.carritoTemporal.limpiar();
     //redirigiendo a home-page
     this.router.navigate(['home']);
   }
