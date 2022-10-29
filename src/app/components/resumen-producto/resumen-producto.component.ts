@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 
 //para el modal
@@ -6,9 +7,9 @@ import {
   ModalDismissReasons,
   NgbModalConfig,
 } from '@ng-bootstrap/ng-bootstrap';
-
 //para cambiar de pagina
 import { Router } from '@angular/router';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-resumen-producto',
@@ -18,7 +19,6 @@ import { Router } from '@angular/router';
   providers: [NgbModalConfig, NgbModal],
 })
 export class ResumenProductoComponent implements OnInit {
-  
   @Input() idProducto!: string;
   @Input() nombreProducto!: string;
   @Input() precio!: number;
@@ -30,6 +30,7 @@ export class ResumenProductoComponent implements OnInit {
     private modalService: NgbModal,
     config: NgbModalConfig,
     private router: Router,
+    private carritoService: CarritoService
   ) { 
     config.size = 'xl';
     config.scrollable = true;
@@ -41,7 +42,7 @@ export class ResumenProductoComponent implements OnInit {
   subtotal: number = 0;
 
   ngOnInit(): void {
-    //Implementar funcionalidad para modal, obtener productos para el carrito
+    this.productosModal = this.carritoService.getProductosCarrito();
   }
 
   //para el modal
@@ -73,9 +74,49 @@ export class ResumenProductoComponent implements OnInit {
     this.router.navigate(['flujo-detalles']);
   }
 
-  operacionUnidadProductoCarrito() {
-    //Implementar funcionalidad
-    console.log("Suma o resta de cantidad de producto");
+  anhadirProcutoCarrito() {
+    var producto = {
+      nombre: this.nombreProducto,
+      photoURL: this.photoURL,
+      idProducto: this.idProducto,
+      precio: this.precio,
+      preciofinal: this.preciofinal,
+      descuento: this.descuento,
+      cantidad: 1,
+    };
+
+    this.carritoService.agregarProductoCarrito(producto);
+
+    this.subtotal = 0;
+
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
+
+    console.log(this.productosModal);
+  }
+
+  operacionUnidadProductoCarrito(idProductoOperacion:string,operacion: string) {
+    this.carritoService.operacionUnidadProductoCarrito(
+      idProductoOperacion,
+      operacion
+    );
+
+    this.subtotal = 0;
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
+  }
+
+  eliminarProductoCarrito(idProducto:string){
+    console.log(idProducto)
+    this.carritoService.eliminarProductoCarrito(idProducto);
+    this.productosModal = this.carritoService.getProductosCarrito();
+    this.subtotal = 0;
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
+    console.log(this.productosModal);
   }
 
   seguirComprando():void{

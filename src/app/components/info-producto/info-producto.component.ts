@@ -9,8 +9,6 @@ export class InfoProductoComponent implements OnInit {
 
   @Input() acercaDe!:string;
   @Input() marca!:string;
-  @Input() instrucciones!:string;
-  @Input() publicoObjetivo!:string;
   @Input() contenido!:string;
   @Input() categoria!:string;
 
