@@ -49,6 +49,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthModule } from '@angular/fire/auth/';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AdministradorComponent,
     PedidosComponent,
     ProductosAdminComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,

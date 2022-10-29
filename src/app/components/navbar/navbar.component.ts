@@ -40,6 +40,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([ruta]);
   }
 
+  irContacto():void{
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   /*
   clickHome(){
     this.router.navigate(['home']);

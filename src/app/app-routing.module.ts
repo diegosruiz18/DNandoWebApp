@@ -11,6 +11,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ProductosAdminComponent } from './pages/productos-admin/productos-admin.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: 'productos-admin',
     component: ProductosAdminComponent
+  },
+  {
+    path: 'admin-profile',
+    component: AdminProfileComponent
   }
 ];
 
