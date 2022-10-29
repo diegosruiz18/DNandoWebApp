@@ -1,1 +1,806 @@
-<p>pedidos works!</p>
+<div class="container-fluid">
+    <div class="container" *ngIf="opcionElegida">
+      <nav class="nav nav-pills flex-column flex-sm-row">
+        <a class="flex-sm text-sm-center nav-link active" aria-current="page"
+          >Activos</a
+        >
+        <a
+          class="flex-sm text-sm-center nav-link"
+          (click)="cambiarOpcionElegida()"
+          >Todos</a
+        >
+      </nav>
+    </div>
+  
+    <div class="container" *ngIf="!opcionElegida">
+      <nav class="nav nav-pills flex-column flex-sm-row">
+        <a
+          class="flex-sm text-sm-center nav-link"
+          aria-current="page"
+          (click)="cambiarOpcionElegida()"
+          >Activos</a
+        >
+        <a class="flex-sm text-sm-center nav-link active">Todos</a>
+      </nav>
+    </div>
+  
+    <div class="container table-responsive" *ngIf="!opcionElegida">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Precio Total</th>
+            <th scope="col">Telefono</th>
+            <th scope="col" colspan="2">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pedido of pedidos">
+            <td>
+              {{
+                pedido.payload.doc.data().total | currency: "PLUMA":"S/. ":"1.2-2"
+              }}
+            </td>
+            <!-- <td>{{pedido.payload.doc.data().carritoPedido.length()}}</td> -->
+            <td>{{ pedido.payload.doc.data().telefono }}</td>
+            <td>{{ pedido.payload.doc.data().estado }}</td>
+            <td>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  (click)="setPedidoTemporal(pedido.payload.doc.id)"
+                >
+                  ...
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      >Detalle</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      class="dropdown-item"
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal2"
+                      (click)="setEstadoTemporal(pedidoTemporal.estado)"
+                      >Cambiar Estado</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item">Archivar</a></li>
+                </ul>
+              </div>
+            </td>
+  
+            <!-- Inicio Modal 1 -->
+  
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              *ngIf="pedidoTemporal"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-3">Cliente</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.nombrePersona }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">E-mail</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.correoPersona }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">Dirección</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.direccion }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">Teléfono:</div>
+                      <div class="col-3">
+                        {{ pedidoTemporal.telefono }}
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="container table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Producto</th>
+                              <th scope="col">Cantidad</th>
+                              <th scope="col">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              *ngFor="
+                                let producto of pedidoTemporal.carritoPedido
+                              "
+                            >
+                              <td>{{ producto.nombre }}</td>
+                              <td>{{ producto.cantidad }}</td>
+                              <td>
+                                {{
+                                  producto.preciofinal
+                                    | currency: "PLUMA":"S/. ":"1.2-2"
+                                }}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="row">
+                      <div class="row">
+                        <div class="col-6">Subtotal</div>
+                        <div class="col-6">
+                          {{
+                            pedidoTemporal.subtotal
+                              | currency: "PLUMA":"S/. ":"1.2-2"
+                          }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">Envío</div>
+                        <div class="col-6">
+                          {{
+                            pedidoTemporal.costoEnvio
+                              | currency: "PLUMA":"S/. ":"1.2-2"
+                          }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <hr />
+                        <div class="col-6"><b>Total</b></div>
+                        <div class="col-6">
+                          <b>{{
+                            pedidoTemporal.total
+                              | currency: "PLUMA":"S/. ":"1.2-2"
+                          }}</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Final Modal 1-->
+  
+            <!-- Inicio Modal 2 -->
+  
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              *ngIf="pedidoTemporal"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">
+                      Modificar Pedido
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-3">Cliente</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.nombrePersona }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">E-mail</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.correoPersona }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">Dirección</div>
+                      <div class="col-9">
+                        {{ pedidoTemporal.direccion }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">Teléfono:</div>
+                      <div class="col-3">
+                        {{ pedidoTemporal.telefono }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-3">Estado</div>
+                      <div class="col-9">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            {{ estadoTemporal }}
+                          </button>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Solicitado')"
+                                >Solicitado</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Aprobado')"
+                                >Aprobado</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Enviado')"
+                                >Enviado</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Entregado')"
+                                >Entregado</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Denegado')"
+                                >Denegado</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="dropdown-item"
+                                (click)="setEstadoTemporal('Cancelado')"
+                                >Cancelado</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="container table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Producto</th>
+                              <th scope="col">Cantidad</th>
+                              <th scope="col">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              *ngFor="
+                                let producto of pedidoTemporal.carritoPedido
+                              "
+                            >
+                              <td>{{ producto.nombre }}</td>
+                              <td>{{ producto.cantidad }}</td>
+                              <td>{{ producto.preciofinal }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Atrás
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-target="#exampleModalToggle2"
+                      data-bs-toggle="modal"
+                      data-bs-dismiss="modal"
+                    >
+                      Guardar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Final Modal 2 -->
+  
+            <!-- Inicio Modal 3 Confirmación Estado -->
+  
+            <div
+              *ngIf="pedidoTemporal"
+              class="modal fade"
+              id="exampleModalToggle2"
+              aria-hidden="true"
+              aria-labelledby="exampleModalToggleLabel2"
+              tabindex="-1"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">
+                      Confirmación de Cambios
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    ¿Está seguro de Cambiar el estado del pedido?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      class="btn btn-primary"
+                      data-bs-target="#exampleModal2"
+                      data-bs-toggle="modal"
+                      data-bs-dismiss="modal"
+                    >
+                      Atrás
+                    </button>
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      (click)="
+                        cambiarEstadoPedidoEspecifico(
+                          idPedidoTemporal,
+                          estadoTemporal
+                        )
+                      "
+                    >
+                      Confirmar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Fin Modal 3 Confirmación Estado -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<!-- Listado Pedidos Con Estado Activo -->
+<div class="container table-responsive" *ngIf="opcionElegida">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Precio Total</th>
+          <th scope="col">Telefono</th>
+          <th scope="col" colspan="2">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidosActivos">
+          <td>
+            {{
+              pedido.payload.doc.data().total | currency: "PLUMA":"S/. ":"1.2-2"
+            }}
+          </td>
+          <!-- <td>{{pedido.payload.doc.data().carritoPedido.length()}}</td> -->
+          <td>{{ pedido.payload.doc.data().telefono }}</td>
+          <td>{{ pedido.payload.doc.data().estado }}</td>
+          <td>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                (click)="setPedidoTemporal(pedido.payload.doc.id)"
+              >
+                ...
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    class="dropdown-item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModalActive"
+                    >Detalle</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    class="dropdown-item"
+                    class="dropdown-item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2Active"
+                    (click)="setEstadoTemporal(pedidoTemporal.estado)"
+                    >Cambiar Estado</a
+                  >
+                </li>
+                <li><a class="dropdown-item">Archivar</a></li>
+              </ul>
+            </div>
+          </td>
+  
+          <!-- Inicio Modal 1 -->
+  
+          <div
+            class="modal fade"
+            id="exampleModalActive"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabelActive"
+            aria-hidden="true"
+            *ngIf="pedidoTemporal"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelActive">Pedido</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-3">Cliente</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.nombrePersona }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">E-mail</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.correoPersona }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">Dirección</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.direccion }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">Teléfono:</div>
+                    <div class="col-3">
+                      {{ pedidoTemporal.telefono }}
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="container table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let producto of pedidoTemporal.carritoPedido"
+                          >
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.preciofinal | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="row">
+                    <div class="row">
+                      <div class="col-6">Subtotal</div>
+                      <div class="col-6">
+                        {{
+                          pedidoTemporal.subtotal
+                            | currency: "PLUMA":"S/. ":"1.2-2"
+                        }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">Envío</div>
+                      <div class="col-6">
+                        {{
+                          pedidoTemporal.costoEnvio
+                            | currency: "PLUMA":"S/. ":"1.2-2"
+                        }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <hr />
+                      <div class="col-6"><b>Total</b></div>
+                      <div class="col-6">
+                        <b>{{
+                          pedidoTemporal.total | currency: "PLUMA":"S/. ":"1.2-2"
+                        }}</b>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Final Modal 1-->
+  
+          <!-- Inicio Modal 2 -->
+  
+          <div
+            class="modal fade"
+            id="exampleModal2Active"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabelActive"
+            aria-hidden="true"
+            *ngIf="pedidoTemporal"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel2Active">
+                    Modificar Pedido
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-3">Cliente</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.nombrePersona }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">E-mail</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.correoPersona }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">Dirección</div>
+                    <div class="col-9">
+                      {{ pedidoTemporal.direccion }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">Teléfono:</div>
+                    <div class="col-3">
+                      {{ pedidoTemporal.telefono }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">Estado</div>
+                    <div class="col-9">
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-secondary dropdown-toggle"
+                          type="button"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          {{ estadoTemporal }}
+                        </button>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="dropdownMenuButton1"
+                        >
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Solicitado')"
+                              >Solicitado</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Aprobado')"
+                              >Aprobado</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Enviado')"
+                              >Enviado</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Entregado')"
+                              >Entregado</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Denegado')"
+                              >Denegado</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="setEstadoTemporal('Cancelado')"
+                              >Cancelado</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="container table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let producto of pedidoTemporal.carritoPedido"
+                          >
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.cantidad }}</td>
+                            <td>
+                              {{
+                                producto.preciofinal
+                                  | currency: "PLUMA":"S/. ":"1.2-2"
+                              }}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Atrás
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-target="#exampleModalToggle2Active"
+                    data-bs-toggle="modal"
+                    data-bs-dismiss="modal"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Final Modal 2 -->
+  
+          <!-- Inicio Modal 3 Confirmación Estado -->
+  
+          <div
+            *ngIf="pedidoTemporal"
+            class="modal fade"
+            id="exampleModalToggle2Active"
+            aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel2Active"
+            tabindex="-1"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel2">
+                    Confirmación de Cambios
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  ¿Está seguro de Cambiar el estado del pedido?
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-primary"
+                    data-bs-target="#exampleModal2"
+                    data-bs-toggle="modal"
+                    data-bs-dismiss="modal"
+                  >
+                    Atrás
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    (click)="
+                      cambiarEstadoPedidoEspecifico(
+                        idPedidoTemporal,
+                        estadoTemporal
+                      )
+                    "
+                  >
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Fin Modal 3 Confirmación Estado -->
+        </tr>
+      </tbody>
+    </table>
+</div>

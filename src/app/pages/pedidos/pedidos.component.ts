@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidosService } from 'src/app/services/pedidos.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -6,12 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent implements OnInit {
-
   opcionElegida: boolean = true;
 
-  constructor(
-    //private pedidosService: PedidosService
-  ) {}
+  constructor(private pedidosService: PedidosService) {}
 
   pedidos: any[] = [];
   pedidosActivos: any[] = [];
@@ -21,8 +19,6 @@ export class PedidosComponent implements OnInit {
   pedidoTemporal!: any;
 
   ngOnInit(): void {
-    //Implementar:
-    /**
     this.pedidosService.getPedidos().subscribe((querysnapshot) => {
       this.pedidos = [];
       querysnapshot.forEach((doc) => {
@@ -35,37 +31,27 @@ export class PedidosComponent implements OnInit {
         }
       });
     });
-    */
-    
+
+    console.log(this.opcionElegida);
   }
 
   cambiarOpcionElegida() {
     this.opcionElegida = !this.opcionElegida;
   }
 
-  cambiarEstadoPedidoEspecifico(
-    //idPedido:string,nuevoEstado:string
-    ){
-    //this.pedidosService.modificarPedidoEspecifico(idPedido,nuevoEstado)
+  cambiarEstadoPedidoEspecifico(idPedido:string,nuevoEstado:string){
+    this.pedidosService.modificarPedidoEspecifico(idPedido,nuevoEstado);
   }
 
-  setEstadoTemporal(
-    //temp:string
-    ){
-    //this.estadoTemporal = temp;
+  setEstadoTemporal(temp:string){
+    this.estadoTemporal = temp;
   }
 
-  setPedidoTemporal(
-    //idPedidoTemporal:string
-    ){
-    //Implementar:
-    /**
+  setPedidoTemporal(idPedidoTemporal:string){
     this.idPedidoTemporal = idPedidoTemporal;
     this.pedidosService.getPedidoEspecifico(idPedidoTemporal).subscribe((el)=>{
       this.pedidoTemporal=el
     })
-    */
-    
   }
 
 }

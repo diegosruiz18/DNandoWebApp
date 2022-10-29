@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FootercontrollerService } from 'src/app/services/footercontroller.service';
 
@@ -11,7 +12,7 @@ export class AdministradorComponent implements OnInit {
 
   constructor(
     private footerControllerService: FootercontrollerService,
-    //private auth: AngularFireAuth,
+    private auth: AngularFireAuth,
     private router: Router
   ) {
     
@@ -20,15 +21,13 @@ export class AdministradorComponent implements OnInit {
   opcion:string='pedidos'
 
   ngOnInit(): void {
-    //Implementar
-    /**
+    
     this.auth.authState.subscribe((el)=>{
       if(!el){
         alert("Debe Registrarse Primero")
         this.router.navigate(['login'])
       }
     })
-    */
     this.footerControllerService.esconderFooter();
   }
 
