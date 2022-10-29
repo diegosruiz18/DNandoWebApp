@@ -20,34 +20,15 @@
             <td>{{producto.payload.doc.data().descuento | percent}}</td>
             <td>{{producto.payload.doc.data().preciofinal | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
             <td scope="col">
-                <!--Implementar funcionalidad del boton, falta: anhadirProcutoCarrito(producto);-->
               <button class="btn btn-blanco-naranja mx-2"
               (click)="anhadirProcutoCarrito(producto); open(content)"
               >Pedir</button>
-              <!--Implementar funcionalidad del boton-->
               <button class="btn btn-blanco-azul" (click)="enrutarDetalleProducto(producto.payload.doc.id)">Detalles</button>
             </td>
           </tr>
         </tbody>
     </table>
 </div>
-
-<!--
-    PARA IMPLEMENTAR FUNCIONALIDAD DE LA TABLA
-    <tr *ngFor="let producto of productos">
-        <th scope="row"><img src="{{producto.payload.doc.data().photoURL}}" alt="" width="150px" height="150px"></th>
-        <td>{{producto.payload.doc.data().nombre}}</td>
-        <td>{{producto.payload.doc.data().marca}}</td>
-        <td>{{producto.payload.doc.data().precio | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
-        <td>{{producto.payload.doc.data().descuento | percent}}</td>
-        <td>{{producto.payload.doc.data().preciofinal | currency:'PLUMA':'S/. ':'1.2-2'}}</td>
-        <td scope="col">
-            <button class="btn btn-blanco mx-2"
-            (click)="anhadirProcutoCarrito(producto); open(content)">Pedir</button>
-            <button class="btn btn-blanco" (click)="enrutarDetalleProducto(producto.payload.doc.id)">Detalles</button>
-        </td>
-    </tr>
--->
 
 <!--Modal para el carrito de pedido-->
 <ng-template #content let-modal>
@@ -69,9 +50,6 @@
   <div class="modal-body ventana-modal">
     <div class="container">
       <!--primer producto-->
-      <!-- Implementar funcionalidad para obtener productos, copiar y pegar en linea 61: 
-          <div class="row" *ngFor="let producto of productosModal"> 
-      -->
       <div class="row" *ngFor="let producto of productosModal">
         <div class="col-3 text-center">
           <img src="{{producto.photoURL}}" alt="reloj" class="img-fluid">
@@ -85,9 +63,6 @@
         <div class="col-3 text-center">
           <h5 class="">Cantidad</h5>
           <h5 class="text">
-              <!-- Implementar funcionalidad
-                  <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
-              -->
             <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
             {{producto.cantidad}}
             <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'suma')">+</button>
@@ -100,8 +75,6 @@
             <h5 class="text">{{(producto.preciofinal * producto.cantidad) | currency:'PLUMA':'S/. ':'1.2-2'}}</h5>
             </div>
             <div class="col">
-              <!--Implementar funcionalidad del boton-->
-              <!-- <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn"> -->
               <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn">
                 <img src="../../../assets/trash-2-32.png" alt="">
               </button>

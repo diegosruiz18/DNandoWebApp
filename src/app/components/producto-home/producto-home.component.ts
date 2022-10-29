@@ -51,7 +51,6 @@ export class ProductoHomeComponent implements OnInit {
   }
 
   enrutarDetalleProducto(){
-    //this.router.navigate(['detalle']);
     this.router.navigate(['producto',this.idProducto]);
   }
 
@@ -102,6 +101,9 @@ export class ProductoHomeComponent implements OnInit {
     this.productosModal.forEach((prod) => {
       this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
     });
+
+    this.productosModal = this.carritoService.getProductosCarrito();
+    console.log(this.productosModal);
   }
 
   operacionUnidadProductoCarrito(idProductoOperacion:string,operacion: string) {
@@ -124,6 +126,7 @@ export class ProductoHomeComponent implements OnInit {
     this.productosModal.forEach((prod) => {
       this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
     });
+    console.log(this.productosModal);
   }
 
   seguirComprando():void{

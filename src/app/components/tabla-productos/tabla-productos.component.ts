@@ -48,7 +48,6 @@ export class TablaProductosComponent implements OnInit {
   subtotal: number = 0;
 
   ngOnInit(): void {
-    //Implementar funcionalidad
     this.productoService.getProductosCategoria(this.categoria).subscribe((querysnapshot)=>{
       this.productos = [];
       querysnapshot.forEach((doc)=>{
@@ -60,7 +59,6 @@ export class TablaProductosComponent implements OnInit {
   }
 
   enrutarDetalleProducto(id_producto:any){
-    //Implementar funcionalidad para navegar a detalle de producto -> producto:id
     this.router.navigate(['producto',id_producto]);
   }
 

@@ -9,15 +9,12 @@
     <!-- botones -->
     <div class="row py-5">
         <div class="col-4 text-end">
-            <!--Implementar funcionalidad del boton-->
             <button class="btn btn-naranja py-2" (click)="mostrarProductosAbarrotes()">Abarrotes</button>
         </div>
         <div class="col-4 text-center">
-            <!--Implementar funcionalidad del boton-->
             <button class="btn btn-azul py-4 px-4"  (click)="mostrarProductosSnacks()">Snacks</button>
         </div>
         <div class="col-4 text-start">
-            <!--Implementar funcionalidad del boton-->
             <button class="btn btn-naranja py-4 px-4" (click)="mostrarProductosLacteosBebidas()">Lácteos y<br> bebidas</button>
         </div>
     </div>
@@ -25,12 +22,10 @@
     <div class="row py-5">
         <div class="col-6 text-end"
         style="padding-right: 65px;">
-            <!--Implementar funcionalidad del boton-->
             <button class="btn btn-azul py-2" (click)="mostrarProductosHigiene()">Higiene y<br> limpieza</button>
         </div>
         <div class="col-6 text-start"
         style="padding-left: 65px;">
-            <!--Implementar funcionalidad del boton-->
             <button class="btn btn-naranja py-4 px-4" (click)="mostrarProductosGolosinas()">Golosinas</button>
         </div>
     </div>
@@ -70,30 +65,3 @@
         </div>
     </div>
 </div>
-
-<!--
-    PARA IMPLEMENTAR FUNCIONALIDAD DE TABLAS
-    <div class="row py-5">
-        <div class="col">
-            <div *ngIf="productoSeleccionado=='Prendas y accesorios'">
-                <app-tabla-productos 
-                [categoria]="productoSeleccionado"
-                ></app-tabla-productos>
-            </div>
-
-            <div *ngIf="productoSeleccionado=='Maquillaje'">
-                <app-tabla-productos
-                [categoria]="productoSeleccionado"
-                ></app-tabla-productos>
-            </div>
-
-            <div *ngIf="productoSeleccionado=='Perfume'">
-                <app-tabla-productos
-                [categoria]="productoSeleccionado"
-                ></app-tabla-productos>
-            </div>
-        </div>
-    </div>
--->
-
-<!--Implementar modal-->
