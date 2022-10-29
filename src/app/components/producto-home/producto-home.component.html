@@ -1,40 +1,25 @@
 <div id="card-item" class="card" (mouseenter)="ShowHideButton()" (mouseleave)="ShowHideButton()">
-    <img src="../../../assets/pan-molde-bimbo.jpg" alt="pan-molde" class="img-fluid image-card" />
+    <img src="{{photoURL}}" alt="pan-molde" class="img-fluid image-card" />
     <div class="card-body">
-        <h5 class="card-title">Pan de molde rebanado Bimbo</h5>
-        <p class="card-text text-muted">10% descuento</p>
-        <p class="card-subtitle text-muted"><del>S/. 14.50</del></p>
-        <h5 class="card-subtitle text py-2">S/. 13.20</h5>
+        <h5 class="card-title">{{nombreProducto}}</h5>
+        <p class="card-text text-muted">{{descuentoProducto | percent}} descuento</p>
+        <p class="card-subtitle text-muted"><del>{{precioProducto | currency:'PLUMA':'S/. ':'1.2-2'}}</del></p>
+        <h5 class="card-subtitle text py-2">{{precioFinal | currency:'PLUMA':'S/. ':'1.2-2'}}</h5>
         <div class="row pt-2" id="grupo-botones" *ngIf="!showMainContent">
             <div class="col">
-                <!--Implementar funcionalidad del boton-->
                 <div id="boton-detalle" 
                 class="btn btn-outline-primary"
                 (click)="enrutarDetalleProducto()" >Detalles
                 </div>
             </div>
             <div class="col">
-                <!--Implementar funcionalidad del boton, agregar producto a carrito-->
                 <div id="boton-pedir" class="btn btn-primary" 
-                (click)="open(content)">Pedir
+                (click)="anhadirProcutoCarrito(); open(content)">Pedir
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!--Boton detalle
-    <div id="boton-detalle" 
-    (click)='enrutarDetalleProducto()' class="btn btn-outline-primary">Detalles
-    </div>
--->
-
-<!--Boton pedir
-    <div id="boton-pedir" class="btn btn-primary" 
-    (click)="anhadirProcutoCarrito(); open(content)">Pedir
-    </div>
--->
-
 
 <!--Modal para el carrito de pedido-->
 <ng-template #content let-modal>
@@ -55,87 +40,39 @@
     </div>
     <div class="modal-body ventana-modal">
       <div class="container">
-        <!--primer producto-->
-        <!-- Implementar funcionalidad para obtener productos, copiar y pegar en linea 61: 
-            <div class="row" *ngFor="let producto of productosModal"> 
-        -->
-        <div class="row">
+        <!--productos-->
+        <div class="row" *ngFor="let producto of productosModal">
           <div class="col-3 text-center">
-            <img src="../../../assets/pan-integral-bimbo.jpg" alt="reloj" class="img-fluid">
+            <img src="{{producto.photoURL}}" alt="reloj" class="img-fluid">
           </div>
           <div class="col-3">
-            <h5 class="">Pan integral Bimbo</h5>
-            <p class="text-muted">10% descuento</p>
-            <p class="text-muted"><del>S/. 14.80</del></p>
-            <h5 class="text">S/. 13.32</h5>
+            <h5 class="">{{producto.nombre}}</h5>
+            <p class="text-muted">{{producto.descuento | percent}} descuento</p>
+            <p class="text-muted"><del>{{producto.precio | currency:'PLUMA':'S/. ':'1.2-2'}}</del></p>
+            <h5 class="text">{{producto.preciofinal | currency:'PLUMA':'S/. ':'1.2-2'}}</h5>
           </div>
           <div class="col-3 text-center">
             <h5 class="">Cantidad</h5>
             <h5 class="text">
-                <!-- Implementar funcionalidad
-                    <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
-                -->
-              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">-</button> 
-              1
-              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">+</button>
+              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
+              {{producto.cantidad}}
+              <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'suma')">+</button>
             </h5>
           </div>
           <div class="col-3 text-center">
             <div class="row">
               <div class="col">
               <h5 class="">Precio</h5>
-              <h5 class="text">S/. 13.32</h5>
+              <h5 class="text">{{(producto.preciofinal * producto.cantidad) | currency:'PLUMA':'S/. ':'1.2-2'}}</h5>
               </div>
               <div class="col">
-                <!--Implementar funcionalidad del boton-->
-                <!-- <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn"> -->
-                <button class="btn">
+                  <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn">
                   <img src="../../../assets/trash-2-32.png" alt="">
                 </button>
               </div>
             </div>
           </div>
           <hr>
-        </div>
-
-        <!--segundo producto-->
-        <div class="row">
-            <div class="col-3 text-center">
-              <img src="../../../assets/pan-hamburguesa-bimbo.jpg" alt="reloj" class="img-fluid">
-            </div>
-            <div class="col-3">
-              <h5 class="">Pan de hamburguesa Bimbo</h5>
-              <p class="text-muted">10% descuento</p>
-              <p class="text-muted"><del>S/. 11.00</del></p>
-              <h5 class="text">S/. 10.00</h5>
-            </div>
-            <div class="col-3 text-center">
-              <h5 class="">Cantidad</h5>
-              <h5 class="text">
-                  <!-- Implementar funcionalidad
-                      <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito(producto.idProducto,'resta')">-</button> 
-                  -->
-                <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">-</button> 
-                1
-                <button class="btn btn-sm btn-cantidad" (click)="operacionUnidadProductoCarrito()">+</button>
-              </h5>
-            </div>
-            <div class="col-3 text-center">
-              <div class="row">
-                <div class="col">
-                <h5 class="">Precio</h5>
-                <h5 class="text">S/. 10.00</h5>
-                </div>
-                <div class="col">
-                  <!--Implementar funcionalidad del boton-->
-                  <!-- <button (click)="eliminarProductoCarrito(producto.idProducto)" class="btn"> -->
-                  <button class="btn">
-                    <img src="../../../assets/trash-2-32.png" alt="">
-                  </button>
-                </div>
-              </div>
-            </div>
-            <hr>
         </div>
 
         <!-- subtotal y agregar pedido -->
@@ -151,7 +88,7 @@
             <p style="font-size: 22px;">Subtotal</p>
           </div>
           <div class="col-2 text-end">
-            <h3>S/. 23.32</h3>
+            <h3>{{subtotal | currency:'PLUMA':'S/. ':'1.2-2'}}</h3>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 //para el modal
 import {
@@ -16,7 +17,6 @@ import {
   providers: [NgbModalConfig, NgbModal],
 })
 export class ProductoHomeComponent implements OnInit {
-
   @Input() nombreProducto!:string;
   @Input() precioProducto!:number;
   @Input() descuentoProducto!:number;
@@ -30,6 +30,7 @@ export class ProductoHomeComponent implements OnInit {
     private modalService: NgbModal,
     config: NgbModalConfig,
     private router: Router,
+    private carritoService: CarritoService
   ) { 
     config.size = 'xl';
     config.scrollable = true;
@@ -46,12 +47,12 @@ export class ProductoHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Implementar funcionalidad para modal
+    this.productosModal = this.carritoService.getProductosCarrito();
   }
 
   enrutarDetalleProducto(){
-    //Implementar ruta hacia detalle de producto -> producto:id
-    this.router.navigate(['detalle'])
+    //this.router.navigate(['detalle']);
+    this.router.navigate(['producto',this.idProducto]);
   }
 
   //para el modal
@@ -83,9 +84,46 @@ export class ProductoHomeComponent implements OnInit {
     this.router.navigate(['flujo-detalles']);
   }
 
-  operacionUnidadProductoCarrito() {
-    //Implementar funcionalidad
-    console.log("Suma o resta de cantidad de producto");
+  anhadirProcutoCarrito() {
+    var producto = {
+      nombre: this.nombreProducto,
+      photoURL: this.photoURL,
+      idProducto: this.idProducto,
+      precio: this.precioProducto,
+      preciofinal: this.precioFinal,
+      descuento: this.descuentoProducto,
+      cantidad: 1,
+    };
+
+    this.carritoService.agregarProductoCarrito(producto);
+
+    this.subtotal = 0;
+
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
+  }
+
+  operacionUnidadProductoCarrito(idProductoOperacion:string,operacion: string) {
+    this.carritoService.operacionUnidadProductoCarrito(
+      idProductoOperacion,
+      operacion
+    );
+
+    this.subtotal = 0;
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
+  }
+
+  eliminarProductoCarrito(idProducto:string){
+    console.log(idProducto)
+    this.carritoService.eliminarProductoCarrito(idProducto);
+    this.productosModal = this.carritoService.getProductosCarrito();
+    this.subtotal = 0;
+    this.productosModal.forEach((prod) => {
+      this.subtotal = this.subtotal + prod.preciofinal * prod.cantidad;
+    });
   }
 
   seguirComprando():void{

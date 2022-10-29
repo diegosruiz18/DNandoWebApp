@@ -39,6 +39,16 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ProductosAdminComponent } from './pages/productos-admin/productos-admin.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+//Al instalar ng add @angular/fire
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+//Angular Firestore
+import { AngularFireModule } from '@angular/fire/compat';
+import { AuthModule } from '@angular/fire/auth/';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
@@ -91,7 +101,16 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         }
       }
     }),
-    NgbModule
+    NgbModule,
+    /*
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
+    */
+    AngularFireModule.initializeApp(environment.firebase),
+    AuthModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

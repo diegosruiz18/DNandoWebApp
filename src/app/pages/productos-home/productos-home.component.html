@@ -6,24 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <app-producto-home></app-producto-home>
-      </div>
-      <div class="col">
-        <app-producto-home></app-producto-home>
-      </div>
-      <div class="col">
-        <app-producto-home></app-producto-home>
-      </div>
-      <div class="col">
-        <app-producto-home></app-producto-home>
-      </div>
-    </div>
-  </div>
-
-<!--
-    PARA IMPLEMENTAR FUNCIONALIDAD:
-    <div class="col" *ngFor="let producto of productos.slice(0, 4)">
+      <div class="col" *ngFor="let producto of productos.slice(0, 4)">
         <app-producto-home
             [nombreProducto]="producto.payload.doc.data().nombre"
             [precioFinal]="producto.payload.doc.data().preciofinal"
@@ -33,4 +16,5 @@
             [idProducto]="producto.payload.doc.id"
         ></app-producto-home>
     </div>
--->
+    </div>
+</div>

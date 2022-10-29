@@ -10,15 +10,15 @@
     <div class="row py-5">
         <div class="col-4 text-end">
             <!--Implementar funcionalidad del boton-->
-            <button class="btn btn-naranja py-2">Abarrotes</button>
+            <button class="btn btn-naranja py-2" (click)="mostrarProductosAbarrotes()">Abarrotes</button>
         </div>
         <div class="col-4 text-center">
             <!--Implementar funcionalidad del boton-->
-            <button class="btn btn-azul py-4 px-4">Snacks</button>
+            <button class="btn btn-azul py-4 px-4"  (click)="mostrarProductosSnacks()">Snacks</button>
         </div>
         <div class="col-4 text-start">
             <!--Implementar funcionalidad del boton-->
-            <button class="btn btn-naranja py-4 px-4">Lácteos y<br> bebidas</button>
+            <button class="btn btn-naranja py-4 px-4" (click)="mostrarProductosLacteosBebidas()">Lácteos y<br> bebidas</button>
         </div>
     </div>
 
@@ -26,20 +26,46 @@
         <div class="col-6 text-end"
         style="padding-right: 65px;">
             <!--Implementar funcionalidad del boton-->
-            <button class="btn btn-azul py-2">Higiene y<br> limpieza</button>
+            <button class="btn btn-azul py-2" (click)="mostrarProductosHigiene()">Higiene y<br> limpieza</button>
         </div>
         <div class="col-6 text-start"
         style="padding-left: 65px;">
             <!--Implementar funcionalidad del boton-->
-            <button class="btn btn-naranja py-4 px-4">Golosinas</button>
+            <button class="btn btn-naranja py-4 px-4" (click)="mostrarProductosGolosinas()">Golosinas</button>
         </div>
     </div>
 
     <!--tabla-->
     <div class="row py-5">
         <div class="col">
-            <div>
-                <app-tabla-productos></app-tabla-productos>
+            <div *ngIf="productoSeleccionado=='Abarrotes'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Snacks'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Lacteos y bebidas'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Higiene y limpieza'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
+            </div>
+
+            <div *ngIf="productoSeleccionado=='Golosinas'">
+                <app-tabla-productos
+                [categoria]="productoSeleccionado"
+                ></app-tabla-productos>
             </div>
         </div>
     </div>
