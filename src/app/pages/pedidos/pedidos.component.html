@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="container" *ngIf="opcionElegida">
+    <div class="container py-4" *ngIf="opcionElegida">
       <nav class="nav nav-pills flex-column flex-sm-row">
         <a class="flex-sm text-sm-center nav-link active" aria-current="page"
           >Activos</a
@@ -12,7 +12,7 @@
       </nav>
     </div>
   
-    <div class="container" *ngIf="!opcionElegida">
+    <div class="container py-4" *ngIf="!opcionElegida">
       <nav class="nav nav-pills flex-column flex-sm-row">
         <a
           class="flex-sm text-sm-center nav-link"
@@ -28,6 +28,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th scope="col">Nombre Persona</th>
             <th scope="col">Precio Total</th>
             <th scope="col">Telefono</th>
             <th scope="col" colspan="2">Estado</th>
@@ -35,6 +36,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let pedido of pedidos">
+            <td>{{ pedido.payload.doc.data().nombrePersona }}</td>
             <td>
               {{
                 pedido.payload.doc.data().total | currency: "PLUMA":"S/. ":"1.2-2"
@@ -422,6 +424,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th scope="col">Nombre Persona</th>
           <th scope="col">Precio Total</th>
           <th scope="col">Telefono</th>
           <th scope="col" colspan="2">Estado</th>
@@ -429,6 +432,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let pedido of pedidosActivos">
+          <td>{{ pedido.payload.doc.data().nombrePersona }}</td>
           <td>
             {{
               pedido.payload.doc.data().total | currency: "PLUMA":"S/. ":"1.2-2"

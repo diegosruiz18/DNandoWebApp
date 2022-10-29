@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ProductosAdminComponent } from './pages/productos-admin/productos-admin.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'pedidos',
     component: PedidosComponent,
+  },
+  {
+    path: 'productos-admin',
+    component: ProductosAdminComponent
   }
 ];
 

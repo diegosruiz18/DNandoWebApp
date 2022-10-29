@@ -1,1 +1,630 @@
-<p>productos-admin works!</p>
+<div class="container-fluid">
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col">
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+              >
+                Agregar Producto
+              </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Descuento</th>
+            <th scope="col">Precio Final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of pedidos">
+            <td>
+              <img
+                class="img-fluid"
+                src="{{ producto.payload.doc.data().photoURL }}"
+                alt="foto"
+              />
+            </td>
+            <td>
+              {{ producto.payload.doc.data().nombre }}
+            </td>
+            <td>{{ producto.payload.doc.data().categoria }}</td>
+            <td>{{ producto.payload.doc.data().marca }}</td>
+            <td>{{ producto.payload.doc.data().stock }}</td>
+            <td>
+              {{
+                producto.payload.doc.data().precio
+                  | currency: "PLUMA":"S/. ":"1.2-2"
+              }}
+            </td>
+            <td>{{ producto.payload.doc.data().descuento | percent }}</td>
+            <td>
+              {{
+                producto.payload.doc.data().preciofinal
+                  | currency: "PLUMA":"S/. ":"1.2-2"
+              }}
+            </td>
+            <td>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  (click)="setProductoTemporal(producto.payload.doc.id)"
+                >
+                  ...
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      >Detalle</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" (click)="eliminarProducto(producto.payload.doc.id)">Archivar</a></li>
+                </ul>
+              </div>
+            </td>
+  
+            <!-- Inicio Modal 1 -->
+  
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              *ngIf="productoTemporal"
+            >
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div *ngIf="!consultaModificar">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        {{ productoTemporal.nombre }}
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-2">Categoría:</div>
+                        <div class="col-2">
+                          {{ productoTemporal.categoria }}
+                        </div>
+  
+                        <div class="col-2">Marca:</div>
+                        <div class="col-2">
+                          {{ productoTemporal.marca }}
+                        </div>
+                        <div class="col-2">Stock:</div>
+                        <div class="col-2">
+                          {{ productoTemporal.stock }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">Precio:</div>
+                        <div class="col-2">
+                          {{
+                            productoTemporal.precio
+                              | currency: "PLUMA":"S/. ":"1.2-2"
+                          }}
+                        </div>
+                        <div class="col-2">Precio Final:</div>
+                        <div class="col-2">
+                          {{
+                            productoTemporal.preciofinal
+                              | currency: "PLUMA":"S/. ":"1.2-2"
+                          }}
+                        </div>
+                        <div class="col-2">Descuento:</div>
+                        <div class="col-2">
+                          {{ productoTemporal.descuento | percent }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">Descripción:</div>
+                        <div class="col-4">
+                          {{ productoTemporal.acercaDe }}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">Foto:</div>
+                        <div class="col-4">
+                          <img
+                            class="img-fluid"
+                            id="fotoModal"
+                            src="{{ productoTemporal.photoURL }}"
+                            alt="photo"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="cambiarEstadoModificar()"
+                      >
+                        Modificar
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="consultaModificar">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel2">
+                        {{ productoTemporal.nombre }}
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                          <div class="col-4">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"
+                                >Nombre</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.nombre }}"
+                                aria-label="Nombre"
+                                aria-describedby="basic-addon1"
+                                formControlName="nombre"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"
+                                >Categoría</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.categoria }}"
+                                aria-label="Categoria"
+                                aria-describedby="basic-addon1"
+                                formControlName="categoria"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"
+                                >Marca</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.marca }}"
+                                aria-label="Marca"
+                                aria-describedby="basic-addon1"
+                                formControlName="marca"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"
+                                >Precio</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.precio }}"
+                                aria-label="Precio"
+                                aria-describedby="basic-addon1"
+                                formControlName="precio"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"
+                                >Precio Final</span
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.final }}"
+                                aria-label="Precio Final"
+                                aria-describedby="basic-addon1"
+                                formControlName="preciofinal"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text">Descuento</span>
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.descuento }}"
+                                aria-label="descuento"
+                                aria-describedby="basic-addon1"
+                                formControlName="descuento"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text">Stock</span>
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="{{ productoTemporal.stock }}"
+                                aria-label="stock"
+                                aria-describedby="basic-addon1"
+                                formControlName="stock"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text">Descripción</span>
+                              <textarea
+                                class="form-control"
+                                aria-label="Descripcion"
+                                placeholder="{{ productoTemporal.acercaDe }}"
+                                formControlName="descripcion"
+                              ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text">Contenido</span>
+                              <input
+                                type="text"
+                                class="form-control"
+                                aria-label="contenido"
+                                placeholder="{{ productoTemporal.contenido }}"
+                                aria-describedby="basic-addon1"
+                                formControlName="contenido"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <img
+                              src="{{ productoTemporal.photoURL }}"
+                              alt="photo"
+                            />
+                          </div>
+                          <div class="col-6">
+                            <div class="input-group mb-3">
+                              <label
+                                class="input-group-text"
+                                for="inputGroupFile01"
+                                >Foto</label
+                              >
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="inputGroupFile01"
+                                (change)="changeProductImage($event)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+  
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="cambiarEstadoModificar()"
+                      >
+                        Atrás
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        aria-label="Close"
+                        data-bs-dismiss="modal"
+                        (click)="onSubmitModify(); consultaModificar = false"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Final Modal 1-->
+  
+            <!-- Inicio Modal 2 Agregar Producto -->
+  
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel2"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">
+                      Agregar Producto
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Nombre</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Nombre"
+                              aria-label="Nombre"
+                              aria-describedby="basic-addon1"
+                              formControlName="nombre"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Marca</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Marca"
+                              aria-label="Marca"
+                              aria-describedby="basic-addon1"
+                              formControlName="marca"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Categoría</span
+                            >
+                            <!-- <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Categoria"
+                              aria-label="Categoria"
+                              aria-describedby="basic-addon1"
+                              
+                            /> -->
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                {{ categoriaTemporal }}
+                              </button>
+                              <ul
+                                class="dropdown-menu"
+                                aria-labelledby="dropdownMenuButton1"
+                              >
+                                <li>
+                                  <a
+                                    class="dropdown-item"
+                                    (click)="
+                                      setCategoriaTemporal('Snacks')
+                                    "
+                                    >Snacks</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    class="dropdown-item"
+                                    (click)="setCategoriaTemporal('Lacteos y bebidas')"
+                                    >Lacteos y bebidas</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    class="dropdown-item"
+                                    (click)="setCategoriaTemporal('Higiene y limpieza')"
+                                    >Higiene y limpieza</a
+                                  >
+                                </li>
+                                <li>
+                                    <a
+                                      class="dropdown-item"
+                                      (click)="setCategoriaTemporal('Golosinas')"
+                                      >Golosinas</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                      class="dropdown-item"
+                                      (click)="setCategoriaTemporal('Abarrotes')"
+                                      >Abarrotes</a
+                                    >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Precio</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Precio"
+                              aria-label="Precio"
+                              aria-describedby="basic-addon1"
+                              formControlName="precio"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Precio Final</span
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Precio Final"
+                              aria-label="Precio Final"
+                              aria-describedby="basic-addon1"
+                              formControlName="preciofinal"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">Descuento</span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              aria-label="descuento"
+                              aria-describedby="basic-addon1"
+                              formControlName="descuento"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">Stock</span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              aria-label="stock"
+                              aria-describedby="basic-addon1"
+                              formControlName="stock"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">Descripción</span>
+                            <textarea
+                              class="form-control"
+                              aria-label="Descripcion"
+                              formControlName="descripcion"
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">Contenido</span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              aria-label="contenido"
+                              aria-describedby="basic-addon1"
+                              formControlName="contenido"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01"
+                              >Foto</label
+                            >
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="inputGroupFile01"
+                              (change)="changeProductImage($event)"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+  
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Cerrar
+                    </button>
+                    <button
+                      type="submit"
+                      (click)="onSubmit()"
+                      class="btn btn-primary"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Agregar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Final Modal 2-->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

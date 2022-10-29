@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductosService } from 'src/app/services/productos.service';
+import { FormGroup,FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-productos-admin',
@@ -8,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class ProductosAdminComponent implements OnInit {
 
   constructor(
-    //private productosService:ProductosService
+    private productosService:ProductosService
   ) { }
 
-  /*
+  
   
   productoForm = new FormGroup({
     nombre: new FormControl(''),
@@ -22,47 +24,31 @@ export class ProductosAdminComponent implements OnInit {
     descuento: new FormControl(''),
     stock: new FormControl(''),
     descripcion: new FormControl(''),
-    instrucciones: new FormControl(''),
-    publicodirigido: new FormControl(''),
     contenido: new FormControl('')
   })
-  */
-
-  /* 
   
   idProductoTemporal!: string;
   productoTemporal!: any;
   imageEvent: any = '';
   pedidos: any[] = [];
-  categoriaTemporal: string = 'Maquillaje';
+  categoriaTemporal: string = 'Abarrotes';
   consultaModificar:boolean = false;
-  */
 
   ngOnInit(): void {
-    //Implementar
-    /*
     this.productosService.getProductos().subscribe((querysnapshot) => {
       this.pedidos = [];
       querysnapshot.forEach((doc) => {
         this.pedidos.push(doc);
       });
     });
-    */
   }
 
   setCategoriaTemporal(temp:string){
-    //Implementar
-    /*
     console.log(temp)
     this.categoriaTemporal = temp;
-    */
   }
 
-  setProductoTemporal(
-    //idPedidoTemporal:string
-    ){
-    //Implementar
-    /*
+  setProductoTemporal(idPedidoTemporal:string){
      
     
     this.productoForm = new FormGroup({
@@ -74,8 +60,6 @@ export class ProductosAdminComponent implements OnInit {
       descuento: new FormControl(''),
       stock: new FormControl(''),
       descripcion: new FormControl(''),
-      instrucciones: new FormControl(''),
-      publicodirigido: new FormControl(''),
       contenido: new FormControl('')
     })
 
@@ -85,18 +69,18 @@ export class ProductosAdminComponent implements OnInit {
     this.productosService.getProductoEspecifico(idPedidoTemporal).subscribe((el)=>{
       this.productoTemporal=el
     })
-    */
   }
 
   onSubmit(){
-    //Implementar
-    //this.productoForm.value.categoria = this.categoriaTemporal;
-    //this.productosService.agregarProducto(this.productoForm.value,this.imageEvent)
+
+    this.productoForm.value.categoria = this.categoriaTemporal;
+    
+    this.productosService.agregarProducto(this.productoForm.value,this.imageEvent)
+
   }
 
   onSubmitModify(){
-    //Implementar
-    /*
+
     if(this.productoForm.value.nombre==''){
       this.productoForm.value.nombre = this.productoTemporal.nombre
     }
@@ -121,34 +105,24 @@ export class ProductosAdminComponent implements OnInit {
     if(this.productoForm.value.descripcion==''){
       this.productoForm.value.descripcion = this.productoTemporal.acercaDe
     }
-    if(this.productoForm.value.instrucciones==''){
-      this.productoForm.value.instrucciones = this.productoTemporal.instrucciones
-    }
-    if(this.productoForm.value.publicodirigido==''){
-      this.productoForm.value.publicodirigido = this.productoTemporal.dirigido
-    }
-    if(this.productoForm.value.publicodirigido==''){
+    if(this.productoForm.value.contenido==''){
       this.productoForm.value.contenido = this.productoTemporal.contenido
     }
 
     this.productosService.modificarProductoEspecifico(this.productoForm.value,this.imageEvent,this.idProductoTemporal)
-    */
+    
   }
 
-  changeProductImage(
-    //event: any
-    ){
-    //this.imageEvent = event
+  changeProductImage(event: any){
+    this.imageEvent = event
   }
 
   cambiarEstadoModificar(){
-    //this.consultaModificar =!this.consultaModificar 
+    this.consultaModificar =!this.consultaModificar 
   }
 
-  eliminarProducto(
-    //idProductoEliminar:string
-    ){
-    //this.productosService.eliminarProduco(idProductoEliminar)
+  eliminarProducto(idProductoEliminar:string){
+    this.productosService.eliminarProduco(idProductoEliminar)
   }
 
 }
