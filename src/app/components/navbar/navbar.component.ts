@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FootercontrollerService } from 'src/app/services/footercontroller.service';
 
@@ -11,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public auth: AngularFireAuth,
     private controladorFooter: FootercontrollerService
   ) { }
 
@@ -21,7 +23,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  //Implementar funcion logout
+  logout(){
+    this.auth.signOut().then(()=>{
+      this.router.navigate(['home'])
+    })
+    .catch(err=>console.log("error: ",err))
+  }
 
   enrutar(ruta:string){
     if(ruta=='admin'){

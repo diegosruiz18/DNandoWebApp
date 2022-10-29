@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import firebase from 'firebase/compat/app';
 import { SpinnerServiceService } from 'src/app/services/spinner-service.service';
+
 
 @Component({
   selector: 'app-form-login',
@@ -17,9 +20,9 @@ export class FormLoginComponent implements OnInit {
   //edad = '';
   ingresar: Boolean = true;
   contrasenhaErronea: boolean = false;
-
   constructor(
     private router: Router,
+    public auth: AngularFireAuth,
     public spinnerService: SpinnerServiceService
   ) { }
 
@@ -30,31 +33,24 @@ export class FormLoginComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    //Implementar:
-
-    /*
-      this.spinnerService.mostrarSpinner();
-      try {
-        this.auth
-          .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-          .then(() => {
-            this.router.navigate(['home']);
-            this.spinnerService.ocultarSpinner();
-          })
-          .catch(err=>{
-            this.spinnerService.ocultarSpinner();
-          });
-      } catch {
-        this.spinnerService.ocultarSpinner();
-      }
-    */
+    this.spinnerService.mostrarSpinner();
+    try {
+      this.auth
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(() => {
+          this.router.navigate(['home']);
+          this.spinnerService.ocultarSpinner();
+        })
+        .catch(err=>{
+          this.spinnerService.ocultarSpinner();
+        });
+    } catch {
+      this.spinnerService.ocultarSpinner();
+    }
     console.log("Logueado con google");
   }
 
   customLogin() {
-    //Implementar luego:
-
-    /*
     this.spinnerService.mostrarSpinner();
     try {
       this.auth
@@ -72,13 +68,10 @@ export class FormLoginComponent implements OnInit {
     } catch {
       this.spinnerService.ocultarSpinner();
     }
-    */
     console.log("Custom login");
   }
 
   customRegistro() {
-    //Implementar luego:
-    /*
     this.spinnerService.mostrarSpinner();
     try {
       this.auth
@@ -109,7 +102,6 @@ export class FormLoginComponent implements OnInit {
     } catch {
       this.spinnerService.ocultarSpinner();
     }
-    */
     console.log("Custom registro");
   }
 
